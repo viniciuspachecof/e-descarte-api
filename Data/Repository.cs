@@ -30,7 +30,7 @@ namespace e_descarte_api.Data
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        //PONTO DESCARTE
+        // PONTO DESCARTE
         public async Task<PontoDescarte[]> GetAllPontosDescarteAsync()
         {
             IQueryable<PontoDescarte> query = _context.pontodescarte;
@@ -48,6 +48,28 @@ namespace e_descarte_api.Data
             query = query.AsNoTracking()
                          .OrderBy(pontodescarte => pontodescarte.id)
                          .Where(pontodescarte => pontodescarte.id == pontodescarteId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        // USUÁRIO
+        public async Task<Usuario[]> GetAllUsuariosAsync()
+        {
+            IQueryable<Usuario> query = _context.usuario;
+
+            query = query.AsNoTracking()
+                         .OrderBy(usuario => usuario.id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<Usuario> GetUsuarioAsyncById(int usuarioId)
+        {
+            IQueryable<Usuario> query = _context.usuario;
+
+            query = query.AsNoTracking()
+                         .OrderBy(usuario => usuario.id)
+                         .Where(usuario => usuario.id == usuarioId);
 
             return await query.FirstOrDefaultAsync();
         }

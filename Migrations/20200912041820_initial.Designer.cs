@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200907042617_initial")]
+    [Migration("20200912041820_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,18 +48,39 @@ namespace e_descarte_api.Migrations
                         {
                             id = 1,
                             fone = "(48) 3445-8811",
-                            latitude = -28.686900999999999,
-                            longitude = -49.384303000000003,
+                            latitude = -28.6868546,
+                            longitude = -49.384514699999997,
                             nome = "FAMCRI"
                         },
                         new
                         {
                             id = 2,
                             fone = "(48) 3431-3700",
-                            latitude = -28.681298000000002,
-                            longitude = -49.3748468,
+                            latitude = -28.681176099999998,
+                            longitude = -49.3738259,
                             nome = "Faculdades ESUCRI"
                         });
+                });
+
+            modelBuilder.Entity("e_descarte_api.Models.Usuario", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nome")
+                        .HasColumnType("text");
+
+                    b.Property<string>("senha")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("usuario");
                 });
 #pragma warning restore 612, 618
         }
