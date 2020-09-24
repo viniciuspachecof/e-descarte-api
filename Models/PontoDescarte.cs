@@ -20,6 +20,7 @@ namespace e_descarte_api.Models
         public string fone { get; set; }       
         // public string imagem { get; set; }   
         public double longitude { get; set; }       
-        public double latitude { get; set; }       
+        public double latitude { get; set; }    
+        public IEnumerable<PontoDescarteItem> pontodescarteitem { get; set; }   
     }
 }

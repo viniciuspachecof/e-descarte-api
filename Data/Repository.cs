@@ -30,28 +30,6 @@ namespace e_descarte_api.Data
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        // PONTO DESCARTE
-        public async Task<PontoDescarte[]> GetAllPontosDescarteAsync()
-        {
-            IQueryable<PontoDescarte> query = _context.pontodescarte;
-
-            query = query.AsNoTracking()
-                         .OrderBy(pontodescarte => pontodescarte.id);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId)
-        {
-            IQueryable<PontoDescarte> query = _context.pontodescarte;
-
-            query = query.AsNoTracking()
-                         .OrderBy(pontodescarte => pontodescarte.id)
-                         .Where(pontodescarte => pontodescarte.id == pontodescarteId);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
         // USUÁRIO
         public async Task<Usuario[]> GetAllUsuariosAsync()
         {
@@ -70,6 +48,116 @@ namespace e_descarte_api.Data
             query = query.AsNoTracking()
                          .OrderBy(usuario => usuario.id)
                          .Where(usuario => usuario.id == usuarioId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        // PONTO DESCARTE
+        public async Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeItem)
+        {
+            IQueryable<PontoDescarte> query = _context.pontodescarte;
+
+            if (includeItem)
+            {
+                query = query.Include(pd => pd.pontodescarteitem)
+                             .ThenInclude(pdt => pdt.item);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarte => pontodescarte.id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeItem)
+        {
+            IQueryable<PontoDescarte> query = _context.pontodescarte;
+
+            if (includeItem)
+            {
+                query = query.Include(pd => pd.pontodescarteitem)
+                             .ThenInclude(pdt => pdt.item);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarte => pontodescarte.id)
+                         .Where(pontodescarte => pontodescarte.id == pontodescarteId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+        
+        // ITEM
+        public async Task<Item[]> GetAllItensAsync(bool includePontoDescarte)
+        {
+            IQueryable<Item> query = _context.item;
+
+            if (includePontoDescarte)
+            {
+                query = query.Include(i => i.pontodescarteitem)
+                             .ThenInclude(pdt => pdt.pontodescarte);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(item => item.id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<Item> GetItemAsyncById(int itemId, bool includePontoDescarte)
+        {
+            IQueryable<Item> query = _context.item;
+
+            if (includePontoDescarte)
+            {
+                query = query.Include(i => i.pontodescarteitem)
+                             .ThenInclude(pdt => pdt.pontodescarte);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(item => item.id)
+                         .Where(item => item.id == itemId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        // PONTO DESCARTE ITEM
+        public async Task<PontoDescarteItem[]> GetAllPontoDescarteItensAsync(bool includePontoDescarte, bool includeItem)
+        {
+            IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
+
+            if (includePontoDescarte)
+            {
+                query = query.Include(pdt => pdt.pontodescarte);
+            }
+
+            if (includeItem)
+            {
+                query = query.Include(pdt => pdt.item);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarteitem => pontodescarteitem.id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<PontoDescarteItem> GetPontoDescarteItemAsyncById(int pontodescarteitemId, bool includePontoDescarte, bool includeItem)
+        {
+            IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
+
+            if (includePontoDescarte)
+            {
+                query = query.Include(pdt => pdt.pontodescarte);
+            }
+
+            if (includeItem)
+            {
+                query = query.Include(pdt => pdt.item);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarteitem => pontodescarteitem.id)
+                         .Where(pontodescarteitem => pontodescarteitem.id == pontodescarteitemId);
 
             return await query.FirstOrDefaultAsync();
         }

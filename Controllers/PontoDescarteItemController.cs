@@ -9,21 +9,21 @@ namespace e_descarte_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PontoDescarteController : ControllerBase
+    public class PontoDescarteItemController : ControllerBase
     {
         private readonly IRepository _repo;
 
-        public PontoDescarteController(IRepository repo)
+        public PontoDescarteItemController(IRepository repo)
         {
             _repo = repo;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PontoDescarte>>> Get()
+        public async Task<ActionResult<List<PontoDescarteItem>>> Get()
         {
             try
             {
-                var result = await _repo.GetAllPontosDescarteAsync(true);
+                var result = await _repo.GetAllPontoDescarteItensAsync(true, true);
 
                 return Ok(result);
             }
@@ -33,12 +33,12 @@ namespace e_descarte_api.Controllers
             }
         }
 
-        [HttpGet("{pontodescarteId}")]
-        public async Task<IActionResult> GetByPontoDescarteId(int pontodescarteId)
+        [HttpGet("{pontodescarteitemId}")]
+        public async Task<IActionResult> GetByPontoDescarteItemId(int pontodescarteitemId)
         {
             try
             {
-                var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true);
+                var result = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, true, true);
                 
                 return Ok(result);
             }
@@ -49,7 +49,7 @@ namespace e_descarte_api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> post(PontoDescarte model)
+        public async Task<IActionResult> post(PontoDescarteItem model)
         {
             try
             {
@@ -68,13 +68,13 @@ namespace e_descarte_api.Controllers
             return BadRequest();
         }
 
-        [HttpPut("{pontodescarteId}")]
-        public async Task<IActionResult> put(int pontodescarteId, PontoDescarte model)
+        [HttpPut("{pontodescarteitemId}")]
+        public async Task<IActionResult> put(int pontodescarteitemId, PontoDescarteItem model)
         {
             try
             {
-                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
-                if(pontodescarte == null) return NotFound();
+                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false);
+                if(pontodescarteitem == null) return NotFound();
 
                 _repo.Update(model);
 
@@ -91,15 +91,15 @@ namespace e_descarte_api.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{pontodescarteId}")]
-        public async Task<IActionResult> delete(int pontodescarteId)
+        [HttpDelete("{pontodescarteitemId}")]
+        public async Task<IActionResult> delete(int pontodescarteitemId)
         {
             try
             {
-                var PontoDescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
-                if(PontoDescarte == null) return NotFound();
+                var PontoDescarteItem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false);
+                if(PontoDescarteItem == null) return NotFound();
 
-                _repo.Delete(PontoDescarte);
+                _repo.Delete(PontoDescarteItem);
 
                 if(await _repo.SaveChangesAsync())
                 {

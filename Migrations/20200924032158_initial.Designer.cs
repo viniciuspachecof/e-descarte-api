@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200912041820_initial")]
+    [Migration("20200924032158_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,33 @@ namespace e_descarte_api.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("e_descarte_api.Models.Item", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("nome")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("item");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            nome = "Rádio"
+                        },
+                        new
+                        {
+                            id = 2,
+                            nome = "Televisão"
+                        });
+                });
 
             modelBuilder.Entity("e_descarte_api.Models.PontoDescarte", b =>
                 {
@@ -62,6 +89,31 @@ namespace e_descarte_api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("e_descarte_api.Models.PontoDescarteItem", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("itemId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("pontodescarteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("quant")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("itemId");
+
+                    b.HasIndex("pontodescarteId");
+
+                    b.ToTable("pontodescarteitem");
+                });
+
             modelBuilder.Entity("e_descarte_api.Models.Usuario", b =>
                 {
                     b.Property<int>("id")
@@ -81,6 +133,37 @@ namespace e_descarte_api.Migrations
                     b.HasKey("id");
 
                     b.ToTable("usuario");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            email = "vinicius.pachecof@hotmail.com",
+                            nome = "Vinicius",
+                            senha = "123"
+                        },
+                        new
+                        {
+                            id = 2,
+                            email = "rodolfo.casagrande@hotmail.com",
+                            nome = "Rodolfo",
+                            senha = "321"
+                        });
+                });
+
+            modelBuilder.Entity("e_descarte_api.Models.PontoDescarteItem", b =>
+                {
+                    b.HasOne("e_descarte_api.Models.Item", "item")
+                        .WithMany("pontodescarteitem")
+                        .HasForeignKey("itemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("e_descarte_api.Models.PontoDescarte", "pontodescarte")
+                        .WithMany("pontodescarteitem")
+                        .HasForeignKey("pontodescarteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

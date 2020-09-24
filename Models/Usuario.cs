@@ -5,7 +5,7 @@ namespace e_descarte_api.Models
     public class Usuario
     {
         public Usuario() { }
-        public Usuario(int id, string nome, string email, string senha, double longitude)
+        public Usuario(int id, string nome, string email, string senha)
         {
             this.id = id;
             this.nome = nome;
