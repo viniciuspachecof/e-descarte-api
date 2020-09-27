@@ -13,6 +13,5 @@ namespace e_descarte_api.Models
 
         public int id { get; set; }
         public string nome { get; set; }      
-        public IEnumerable<PontoDescarteItem> pontodescarteitem { get; set; }               
     }
 }

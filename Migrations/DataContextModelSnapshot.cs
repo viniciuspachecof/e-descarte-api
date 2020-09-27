@@ -18,6 +18,38 @@ namespace e_descarte_api.Migrations
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("e_descarte_api.Models.Cidade", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("nome")
+                        .HasColumnType("text");
+
+                    b.Property<string>("uf")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("cidade");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            nome = "Criciúma",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 2,
+                            nome = "Forquilhinha",
+                            uf = "SC"
+                        });
+                });
+
             modelBuilder.Entity("e_descarte_api.Models.Item", b =>
                 {
                     b.Property<int>("id")
@@ -52,6 +84,9 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("cidadeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("fone")
                         .HasColumnType("text");
 
@@ -64,7 +99,14 @@ namespace e_descarte_api.Migrations
                     b.Property<string>("nome")
                         .HasColumnType("text");
 
+                    b.Property<int>("usuarioId")
+                        .HasColumnType("integer");
+
                     b.HasKey("id");
+
+                    b.HasIndex("cidadeId");
+
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("pontodescarte");
 
@@ -72,18 +114,22 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
+                            cidadeId = 1,
                             fone = "(48) 3445-8811",
                             latitude = -28.6868546,
                             longitude = -49.384514699999997,
-                            nome = "FAMCRI"
+                            nome = "FAMCRI",
+                            usuarioId = 1
                         },
                         new
                         {
                             id = 2,
+                            cidadeId = 2,
                             fone = "(48) 3431-3700",
                             latitude = -28.681176099999998,
                             longitude = -49.3738259,
-                            nome = "Faculdades ESUCRI"
+                            nome = "Faculdades ESUCRI",
+                            usuarioId = 2
                         });
                 });
 
@@ -103,11 +149,16 @@ namespace e_descarte_api.Migrations
                     b.Property<int>("quant")
                         .HasColumnType("integer");
 
+                    b.Property<int>("usuarioId")
+                        .HasColumnType("integer");
+
                     b.HasKey("id");
 
                     b.HasIndex("itemId");
 
                     b.HasIndex("pontodescarteId");
+
+                    b.HasIndex("usuarioId");
 
                     b.ToTable("pontodescarteitem");
                 });
@@ -149,17 +200,38 @@ namespace e_descarte_api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("e_descarte_api.Models.PontoDescarte", b =>
+                {
+                    b.HasOne("e_descarte_api.Models.Cidade", "cidade")
+                        .WithMany()
+                        .HasForeignKey("cidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("e_descarte_api.Models.Usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("e_descarte_api.Models.PontoDescarteItem", b =>
                 {
                     b.HasOne("e_descarte_api.Models.Item", "item")
-                        .WithMany("pontodescarteitem")
+                        .WithMany()
                         .HasForeignKey("itemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("e_descarte_api.Models.PontoDescarte", "pontodescarte")
-                        .WithMany("pontodescarteitem")
+                        .WithMany()
                         .HasForeignKey("pontodescarteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("e_descarte_api.Models.Usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

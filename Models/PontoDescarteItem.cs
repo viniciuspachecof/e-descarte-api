@@ -3,15 +3,14 @@ namespace e_descarte_api.Models
     public class PontoDescarteItem
     {
         public PontoDescarteItem() { }        
-        public PontoDescarteItem(int id, int quant, int pontodescarteId, PontoDescarte pontodescarte, int itemId, Item item)
+        public PontoDescarteItem(int id, int quant, int pontodescarteId, int itemId, int usuarioId)
         {
 
             this.id = id;
             this.quant = quant;            
             this.pontodescarteId = pontodescarteId;
-            this.pontodescarte = pontodescarte;
             this.itemId = itemId;
-            this.item = item;            
+            this.usuarioId = usuarioId;
         }
         
         public int id { get; set; }
@@ -20,5 +19,7 @@ namespace e_descarte_api.Models
         public PontoDescarte pontodescarte { get; set; }
         public int itemId { get; set; }
         public Item item { get; set; }
+        public int usuarioId { get; set; }
+        public Usuario usuario { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace e_descarte_api.Models
     public class PontoDescarte
     {
         public PontoDescarte() { }
-        public PontoDescarte(int id, string nome, string fone, double latitude, double longitude)
+        public PontoDescarte(int id, string nome, string fone, double latitude, double longitude, int cidadeId, int usuarioId)
         {
             this.id = id;
             this.nome = nome;
@@ -13,6 +13,8 @@ namespace e_descarte_api.Models
             // this.imagem = imagem;
             this.latitude = latitude;
             this.longitude = longitude;
+            this.cidadeId = cidadeId;
+            this.usuarioId = usuarioId;
         }
 
         public int id { get; set; }
@@ -20,7 +22,10 @@ namespace e_descarte_api.Models
         public string fone { get; set; }       
         // public string imagem { get; set; }   
         public double longitude { get; set; }       
-        public double latitude { get; set; }    
-        public IEnumerable<PontoDescarteItem> pontodescarteitem { get; set; }   
+        public double latitude { get; set; }            
+        public int cidadeId { get; set; }            
+        public Cidade cidade { get; set; }  
+        public int usuarioId { get; set; }            
+        public Usuario usuario { get; set; }                   
     }
 }

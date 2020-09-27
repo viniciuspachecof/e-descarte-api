@@ -16,15 +16,20 @@ namespace e_descarte_api.Data
         Task<Usuario> GetUsuarioAsyncById(int usuarioId);
 
         // PONTO DESCARTE
-        Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeItem);
-        Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeItem);
+        Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeCidade, bool includeUsuario);
+        Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeCidade, bool includeUsuario);
 
         // ITEM
-        Task<Item[]> GetAllItensAsync(bool includePontoDescarte);
-        Task<Item> GetItemAsyncById(int itemId, bool includePontoDescarte);
+        Task<Item[]> GetAllItensAsync();
+        Task<Item> GetItemAsyncById(int itemId);
 
         // PONTO DESCARTE ITEM
-        Task<PontoDescarteItem[]> GetAllPontoDescarteItensAsync(bool includePontoDescarte, bool includeItem);
-        Task<PontoDescarteItem> GetPontoDescarteItemAsyncById(int pontodescarteitemId, bool includePontoDescarte, bool includeItem);
+        Task<PontoDescarteItem[]> GetAllPontoDescarteItensAsync(bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
+        Task<PontoDescarteItem> GetPontoDescarteItemAsyncById(int pontodescarteitemId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
+        Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId, int usuarioId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
+
+        // CIDADE
+        Task<Cidade[]> GetAllCidadesAsync();
+        Task<Cidade> GetCidadeAsyncById(int cidadeId);
     }
 }

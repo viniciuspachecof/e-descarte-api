@@ -8,6 +8,20 @@ namespace e_descarte_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "cidade",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nome = table.Column<string>(nullable: true),
+                    uf = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cidade", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "item",
                 columns: table => new
                 {
@@ -18,22 +32,6 @@ namespace e_descarte_api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_item", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "pontodescarte",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(nullable: true),
-                    fone = table.Column<string>(nullable: true),
-                    longitude = table.Column<double>(nullable: false),
-                    latitude = table.Column<double>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_pontodescarte", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,6 +50,36 @@ namespace e_descarte_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "pontodescarte",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nome = table.Column<string>(nullable: true),
+                    fone = table.Column<string>(nullable: true),
+                    longitude = table.Column<double>(nullable: false),
+                    latitude = table.Column<double>(nullable: false),
+                    cidadeId = table.Column<int>(nullable: false),
+                    usuarioId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_pontodescarte", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_pontodescarte_cidade_cidadeId",
+                        column: x => x.cidadeId,
+                        principalTable: "cidade",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_pontodescarte_usuario_usuarioId",
+                        column: x => x.usuarioId,
+                        principalTable: "usuario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "pontodescarteitem",
                 columns: table => new
                 {
@@ -59,7 +87,8 @@ namespace e_descarte_api.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     quant = table.Column<int>(nullable: false),
                     pontodescarteId = table.Column<int>(nullable: false),
-                    itemId = table.Column<int>(nullable: false)
+                    itemId = table.Column<int>(nullable: false),
+                    usuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,6 +105,21 @@ namespace e_descarte_api.Migrations
                         principalTable: "pontodescarte",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_pontodescarteitem_usuario_usuarioId",
+                        column: x => x.usuarioId,
+                        principalTable: "usuario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "cidade",
+                columns: new[] { "id", "nome", "uf" },
+                values: new object[,]
+                {
+                    { 1, "Criciúma", "SC" },
+                    { 2, "Forquilhinha", "SC" }
                 });
 
             migrationBuilder.InsertData(
@@ -88,15 +132,6 @@ namespace e_descarte_api.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "pontodescarte",
-                columns: new[] { "id", "fone", "latitude", "longitude", "nome" },
-                values: new object[,]
-                {
-                    { 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI" },
-                    { 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "usuario",
                 columns: new[] { "id", "email", "nome", "senha" },
                 values: new object[,]
@@ -104,6 +139,25 @@ namespace e_descarte_api.Migrations
                     { 1, "vinicius.pachecof@hotmail.com", "Vinicius", "123" },
                     { 2, "rodolfo.casagrande@hotmail.com", "Rodolfo", "321" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "pontodescarte",
+                columns: new[] { "id", "cidadeId", "fone", "latitude", "longitude", "nome", "usuarioId" },
+                values: new object[,]
+                {
+                    { 1, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", 1 },
+                    { 2, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", 2 }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_pontodescarte_cidadeId",
+                table: "pontodescarte",
+                column: "cidadeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_pontodescarte_usuarioId",
+                table: "pontodescarte",
+                column: "usuarioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_pontodescarteitem_itemId",
@@ -114,6 +168,11 @@ namespace e_descarte_api.Migrations
                 name: "IX_pontodescarteitem_pontodescarteId",
                 table: "pontodescarteitem",
                 column: "pontodescarteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_pontodescarteitem_usuarioId",
+                table: "pontodescarteitem",
+                column: "usuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -122,13 +181,16 @@ namespace e_descarte_api.Migrations
                 name: "pontodescarteitem");
 
             migrationBuilder.DropTable(
-                name: "usuario");
-
-            migrationBuilder.DropTable(
                 name: "item");
 
             migrationBuilder.DropTable(
                 name: "pontodescarte");
+
+            migrationBuilder.DropTable(
+                name: "cidade");
+
+            migrationBuilder.DropTable(
+                name: "usuario");
         }
     }
 }

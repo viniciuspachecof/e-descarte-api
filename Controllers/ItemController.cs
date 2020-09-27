@@ -23,7 +23,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetAllItensAsync(true);
+                var result = await _repo.GetAllItensAsync();
 
                 return Ok(result);
             }
@@ -38,7 +38,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetItemAsyncById(itemId, true);
+                var result = await _repo.GetItemAsyncById(itemId);
                 
                 return Ok(result);
             }
@@ -73,7 +73,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var item = await _repo.GetItemAsyncById(itemId, false);
+                var item = await _repo.GetItemAsyncById(itemId);
                 if(item == null) return NotFound();
 
                 _repo.Update(model);
@@ -96,7 +96,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var Item = await _repo.GetItemAsyncById(itemId, false);
+                var Item = await _repo.GetItemAsyncById(itemId);
                 if(Item == null) return NotFound();
 
                 _repo.Delete(Item);

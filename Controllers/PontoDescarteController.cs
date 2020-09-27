@@ -23,7 +23,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetAllPontosDescarteAsync(true);
+                var result = await _repo.GetAllPontosDescarteAsync(true, true);
 
                 return Ok(result);
             }
@@ -38,7 +38,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true);
+                var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true, true);
                 
                 return Ok(result);
             }
@@ -73,7 +73,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
+                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
                 if(pontodescarte == null) return NotFound();
 
                 _repo.Update(model);
@@ -96,7 +96,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var PontoDescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
+                var PontoDescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
                 if(PontoDescarte == null) return NotFound();
 
                 _repo.Delete(PontoDescarte);
