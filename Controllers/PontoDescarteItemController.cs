@@ -110,14 +110,14 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var PontoDescarteItem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false, false);
-                if(PontoDescarteItem == null) return NotFound();
+                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false, false);
+                if(pontodescarteitem == null) return NotFound();
 
-                _repo.Delete(PontoDescarteItem);
+                _repo.Delete(pontodescarteitem);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Ok("Deletado");
+                    return Ok( new { message = "Deletado"});
                 }                
             }
             catch (Exception ex)

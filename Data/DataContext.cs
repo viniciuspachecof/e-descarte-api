@@ -30,13 +30,29 @@ namespace e_descarte_api.Data
             builder.Entity<Item>()
             .HasData(new List<Item>{
                     new Item(1, "Rádio"),
-                    new Item(2, "Televisão")
+                    new Item(2, "Televisores"),
+                    new Item(3, "Tablets"),
+                    new Item(4, "Monitores"),
+                    new Item(5, "Teclados"),
+                    new Item(6, "Impressoras"),
+                    new Item(7, "Câmeras Fotográficas"),
+                    new Item(8, "Aparelhos de Som"),
+                    new Item(9, "Geladeira"),
+                    new Item(10, "Fogão"),
             });
 
             builder.Entity<Cidade>()
             .HasData(new List<Cidade>{
-                    new Cidade(1, "Criciúma", "SC"),
-                    new Cidade(2, "Forquilhinha", "SC")
+                    new Cidade(1, "Joinville", "SC"),
+                    new Cidade(2, "Florianópolis", "SC"),
+                    new Cidade(3, "Blumenau", "SC"),
+                    new Cidade(4, "São José", "SC"),
+                    new Cidade(5, "Chapecó", "SC"),
+                    new Cidade(6, "Itajaí", "SC"),
+                    new Cidade(7, "Criciúma", "SC"),
+                    new Cidade(8, "Jaraguá do Sul", "SC"),
+                    new Cidade(9, "Palhoça", "SC"),
+                    new Cidade(10, "Lages", "SC")
             });
         }
     }

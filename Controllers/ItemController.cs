@@ -96,15 +96,15 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var Item = await _repo.GetItemAsyncById(itemId);
-                if(Item == null) return NotFound();
+                var item = await _repo.GetItemAsyncById(itemId);
+                if(item == null) return NotFound();
 
-                _repo.Delete(Item);
+                _repo.Delete(item);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Ok("Deletado");
-                }                
+                    return Ok( new { message = "Deletado"});
+                }               
             }
             catch (Exception ex)
             {

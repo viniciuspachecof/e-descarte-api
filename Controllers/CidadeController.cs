@@ -96,15 +96,15 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var Cidade = await _repo.GetCidadeAsyncById(cidadeId);
-                if(Cidade == null) return NotFound();
+                var cidade = await _repo.GetCidadeAsyncById(cidadeId);
+                if(cidade == null) return NotFound();
 
-                _repo.Delete(Cidade);
+                _repo.Delete(cidade);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Ok("Deletado");
-                }                
+                    return Ok( new { message = "Deletado"});
+                }                  
             }
             catch (Exception ex)
             {

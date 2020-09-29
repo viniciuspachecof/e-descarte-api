@@ -39,13 +39,61 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
-                            nome = "Criciúma",
+                            nome = "Joinville",
                             uf = "SC"
                         },
                         new
                         {
                             id = 2,
-                            nome = "Forquilhinha",
+                            nome = "Florianópolis",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 3,
+                            nome = "Blumenau",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 4,
+                            nome = "São José",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 5,
+                            nome = "Chapecó",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 6,
+                            nome = "Itajaí",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 7,
+                            nome = "Criciúma",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 8,
+                            nome = "Jaraguá do Sul",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 9,
+                            nome = "Palhoça",
+                            uf = "SC"
+                        },
+                        new
+                        {
+                            id = 10,
+                            nome = "Lages",
                             uf = "SC"
                         });
                 });
@@ -73,7 +121,47 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 2,
-                            nome = "Televisão"
+                            nome = "Televisores"
+                        },
+                        new
+                        {
+                            id = 3,
+                            nome = "Tablets"
+                        },
+                        new
+                        {
+                            id = 4,
+                            nome = "Monitores"
+                        },
+                        new
+                        {
+                            id = 5,
+                            nome = "Teclados"
+                        },
+                        new
+                        {
+                            id = 6,
+                            nome = "Impressoras"
+                        },
+                        new
+                        {
+                            id = 7,
+                            nome = "Câmeras Fotográficas"
+                        },
+                        new
+                        {
+                            id = 8,
+                            nome = "Aparelhos de Som"
+                        },
+                        new
+                        {
+                            id = 9,
+                            nome = "Geladeira"
+                        },
+                        new
+                        {
+                            id = 10,
+                            nome = "Fogão"
                         });
                 });
 

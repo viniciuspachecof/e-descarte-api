@@ -118,8 +118,16 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "nome", "uf" },
                 values: new object[,]
                 {
-                    { 1, "Criciúma", "SC" },
-                    { 2, "Forquilhinha", "SC" }
+                    { 1, "Joinville", "SC" },
+                    { 2, "Florianópolis", "SC" },
+                    { 3, "Blumenau", "SC" },
+                    { 4, "São José", "SC" },
+                    { 5, "Chapecó", "SC" },
+                    { 6, "Itajaí", "SC" },
+                    { 7, "Criciúma", "SC" },
+                    { 8, "Jaraguá do Sul", "SC" },
+                    { 9, "Palhoça", "SC" },
+                    { 10, "Lages", "SC" }
                 });
 
             migrationBuilder.InsertData(
@@ -127,8 +135,16 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "nome" },
                 values: new object[,]
                 {
+                    { 10, "Fogão" },
+                    { 9, "Geladeira" },
+                    { 8, "Aparelhos de Som" },
+                    { 7, "Câmeras Fotográficas" },
+                    { 6, "Impressoras" },
                     { 1, "Rádio" },
-                    { 2, "Televisão" }
+                    { 4, "Monitores" },
+                    { 3, "Tablets" },
+                    { 2, "Televisores" },
+                    { 5, "Teclados" }
                 });
 
             migrationBuilder.InsertData(

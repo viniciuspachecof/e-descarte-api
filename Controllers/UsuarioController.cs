@@ -96,14 +96,14 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var Usuario = await _repo.GetUsuarioAsyncById(usuarioId);
-                if(Usuario == null) return NotFound();
+                var usuario = await _repo.GetUsuarioAsyncById(usuarioId);
+                if(usuario == null) return NotFound();
 
-                _repo.Delete(Usuario);
+                _repo.Delete(usuario);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Ok("Deletado");
+                    return Ok( new { message = "Deletado"});
                 }                
             }
             catch (Exception ex)
