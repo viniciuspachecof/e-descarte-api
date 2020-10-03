@@ -59,6 +59,7 @@ namespace e_descarte_api.Migrations
                     fone = table.Column<string>(nullable: true),
                     longitude = table.Column<double>(nullable: false),
                     latitude = table.Column<double>(nullable: false),
+                    status = table.Column<bool>(nullable: false),
                     cidadeId = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
                 },
@@ -158,11 +159,11 @@ namespace e_descarte_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "pontodescarte",
-                columns: new[] { "id", "cidadeId", "fone", "latitude", "longitude", "nome", "usuarioId" },
+                columns: new[] { "id", "cidadeId", "fone", "latitude", "longitude", "nome", "status", "usuarioId" },
                 values: new object[,]
                 {
-                    { 1, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", 1 },
-                    { 2, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", 2 }
+                    { 1, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", true, 1 },
+                    { 2, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 2 }
                 });
 
             migrationBuilder.CreateIndex(
