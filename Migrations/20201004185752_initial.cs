@@ -41,9 +41,9 @@ namespace e_descarte_api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(nullable: true),
-                    tipo = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
-                    senha = table.Column<string>(nullable: true)
+                    senha = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

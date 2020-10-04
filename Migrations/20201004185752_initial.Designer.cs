@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201004173448_initial")]
+    [Migration("20201004185752_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
