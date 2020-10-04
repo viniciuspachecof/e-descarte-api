@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\e-descarte-api.csproj": {}
+    "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\jwt\\jwt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\e-descarte-api.csproj": {
+    "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\jwt\\jwt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\e-descarte-api.csproj",
-        "projectName": "e-descarte-api",
-        "projectPath": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\e-descarte-api.csproj",
+        "projectUniqueName": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\jwt\\jwt.csproj",
+        "projectName": "jwt",
+        "projectPath": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\jwt\\jwt.csproj",
         "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\obj\\",
+        "outputPath": "C:\\Users\\Pichau\\Desktop\\tcc\\Nova pasta\\e-descarte-api\\jwt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pichau\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,27 +46,7 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[3.1.2, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.2, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "target": "Package",
-              "version": "[3.1.2, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "target": "Package",
-              "version": "[3.1.2, )"
-            },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[*, )"
             }
           },
           "imports": [
