@@ -98,3 +98,10 @@ C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\Mi
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\vinic\Documents\Visual Studio 2019\e-descarte-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

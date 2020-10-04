@@ -14,6 +14,7 @@ namespace e_descarte_api.Data
         // USUÁRIO
         Task<Usuario[]> GetAllUsuariosAsync();
         Task<Usuario> GetUsuarioAsyncById(int usuarioId);
+        Task<Usuario> GetUsuarioAsyncByNamePassword(string email, string senha);
 
         // PONTO DESCARTE
         Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeCidade, bool includeUsuario);

@@ -5,7 +5,7 @@ using System.Text;
 using e_descarte_api.Models;
 using Microsoft.IdentityModel.Tokens;
 
-namespace e_descarte_api.jwt.Services
+namespace e_descarte_api.Services
 {
     public static class TokenServices
     {
@@ -18,7 +18,8 @@ namespace e_descarte_api.jwt.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name,usuario.nome.ToString())
+                    new Claim(ClaimTypes.Email, usuario.email.ToString()), 
+                    new Claim(ClaimTypes.Role, usuario.tipo.ToString())
                     
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),

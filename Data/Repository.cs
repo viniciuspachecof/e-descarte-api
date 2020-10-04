@@ -52,6 +52,17 @@ namespace e_descarte_api.Data
             return await query.FirstOrDefaultAsync();
         }
 
+        public async Task<Usuario> GetUsuarioAsyncByNamePassword(string email, string senha)
+        {
+            IQueryable<Usuario> query = _context.usuario;
+
+            query = query.AsNoTracking()
+                         .OrderBy(usuario => usuario.id)                         
+                         .Where(usuario => usuario.email == email && usuario.senha == senha);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
         // PONTO DESCARTE
         public async Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeCidade, bool includeUsuario)
         {
