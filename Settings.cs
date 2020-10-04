@@ -1,4 +1,4 @@
-namespace Api_JWT
+namespace e_descarte_api
 {
     public static class Settings
     {

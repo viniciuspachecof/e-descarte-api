@@ -52,11 +52,6 @@ C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\obj\Debug\netcoreapp3.1\e-
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\jwt\appsettings.Development.json
-C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\jwt\appsettings.json
-C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\jwt\obj\jwt.csproj.nuget.dgspec.json
-C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\jwt\obj\project.assets.json
-C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\jwt\Properties\launchSettings.json
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\e-descarte-api.exe
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\e-descarte-api.deps.json
 C:\Users\Pichau\Desktop\tcc\Nova pasta\e-descarte-api\bin\Debug\netcoreapp3.1\e-descarte-api.runtimeconfig.json

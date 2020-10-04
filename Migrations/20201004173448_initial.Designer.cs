@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201003185916_initial")]
+    [Migration("20201004173448_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -272,6 +272,9 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("senha")
+                        .HasColumnType("text");
+
+                    b.Property<string>("tipo")
                         .HasColumnType("text");
 
                     b.HasKey("id");

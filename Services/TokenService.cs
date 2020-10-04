@@ -11,15 +11,13 @@ namespace e_descarte_api.Services
     {
         public static string GenerateToken(Usuario usuario)
         {
-            var chave = "aaa123bbb456ccc789ddd147eee852fff963jjj159hhh753";
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(chave);
+            var key = Encoding.ASCII.GetBytes(Settings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, usuario.email.ToString()), 
-                    new Claim(ClaimTypes.Role, usuario.tipo.ToString())
+                    new Claim(ClaimTypes.Email, usuario.email.ToString())
                     
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),

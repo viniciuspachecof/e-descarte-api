@@ -272,6 +272,9 @@ namespace e_descarte_api.Migrations
                     b.Property<string>("senha")
                         .HasColumnType("text");
 
+                    b.Property<string>("tipo")
+                        .HasColumnType("text");
+
                     b.HasKey("id");
 
                     b.ToTable("usuario");

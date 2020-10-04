@@ -41,6 +41,7 @@ namespace e_descarte_api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(nullable: true),
+                    tipo = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
                     senha = table.Column<string>(nullable: true)
                 },
@@ -150,11 +151,11 @@ namespace e_descarte_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "usuario",
-                columns: new[] { "id", "email", "nome", "senha" },
+                columns: new[] { "id", "email", "nome", "senha", "tipo" },
                 values: new object[,]
                 {
-                    { 1, "vinicius.pachecof@hotmail.com", "Vinicius", "123" },
-                    { 2, "rodolfo.casagrande@hotmail.com", "Rodolfo", "321" }
+                    { 1, "vinicius.pachecof@hotmail.com", "Vinicius", "123", null },
+                    { 2, "rodolfo.casagrande@hotmail.com", "Rodolfo", "321", null }
                 });
 
             migrationBuilder.InsertData(
