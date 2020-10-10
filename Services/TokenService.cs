@@ -17,8 +17,9 @@ namespace e_descarte_api.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, usuario.email.ToString())
-                    
+                    new Claim(ClaimTypes.NameIdentifier, usuario.id.ToString()),
+                    new Claim(ClaimTypes.Email, usuario.email.ToString()),
+                    new Claim(ClaimTypes.Role, usuario.tipo.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),

@@ -17,8 +17,8 @@ namespace e_descarte_api.Data
         {              
             builder.Entity<Usuario>()
             .HasData(new List<Usuario>{
-                    new Usuario(1, "Vinicius", "vinicius.pachecof@hotmail.com", "123", null),
-                    new Usuario(2, "Rodolfo", "rodolfo.casagrande@hotmail.com", "321", null),
+                    new Usuario(1, "Vinicius", "vinicius.pachecof@hotmail.com", "123", "CATADOR"),
+                    new Usuario(2, "Rodolfo", "rodolfo.casagrande@hotmail.com", "321", "DESCARTANTE"),
             });
 
             builder.Entity<PontoDescarte>()

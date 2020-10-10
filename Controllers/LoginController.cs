@@ -31,8 +31,7 @@ namespace e_descarte_api.Controllers
             if (usuario == null)
                 return NotFound(new {message = "Email ou senha inválidos"});
 
-            var token = TokenServices.GenerateToken(usuario);
-            usuario.senha = "";
+            var token = TokenServices.GenerateToken(usuario);            
             return new{
                 usuario = usuario,
                 token = token

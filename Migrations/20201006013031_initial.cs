@@ -154,8 +154,8 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "email", "nome", "senha", "tipo" },
                 values: new object[,]
                 {
-                    { 1, "vinicius.pachecof@hotmail.com", "Vinicius", "123", null },
-                    { 2, "rodolfo.casagrande@hotmail.com", "Rodolfo", "321", null }
+                    { 1, "vinicius.pachecof@hotmail.com", "Vinicius", "123", "CATADOR" },
+                    { 2, "rodolfo.casagrande@hotmail.com", "Rodolfo", "321", "DESCARTANTE" }
                 });
 
             migrationBuilder.InsertData(

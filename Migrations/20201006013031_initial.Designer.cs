@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201004185752_initial")]
+    [Migration("20201006013031_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -287,14 +287,16 @@ namespace e_descarte_api.Migrations
                             id = 1,
                             email = "vinicius.pachecof@hotmail.com",
                             nome = "Vinicius",
-                            senha = "123"
+                            senha = "123",
+                            tipo = "CATADOR"
                         },
                         new
                         {
                             id = 2,
                             email = "rodolfo.casagrande@hotmail.com",
                             nome = "Rodolfo",
-                            senha = "321"
+                            senha = "321",
+                            tipo = "DESCARTANTE"
                         });
                 });
 
