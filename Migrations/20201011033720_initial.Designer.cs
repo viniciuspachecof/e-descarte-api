@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201006013031_initial")]
+    [Migration("20201011033720_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -242,6 +242,9 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("quant")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("status")
                         .HasColumnType("integer");
 
                     b.Property<int>("usuarioId")

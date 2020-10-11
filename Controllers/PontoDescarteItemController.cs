@@ -48,12 +48,26 @@ namespace e_descarte_api.Controllers
             }
         }
 
-        [HttpGet("ByPontoDescarte/{pontodescarteId}/{usuarioId}")]
-        public async Task<IActionResult> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId, int usuarioId)
+        [HttpGet("ByPontoDescarte/{pontodescarteId}")]
+        public async Task<IActionResult> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId)
         {
             try
             {
-                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteId(pontodescarteId, usuarioId, true, true, true, true);
+                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteId(pontodescarteId, true, true, true, true);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+
+        [HttpGet("ByPontoDescarteUsuario/{pontodescarteId}/{usuarioId}")]
+        public async Task<IActionResult> GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(int pontodescarteId, int usuarioId)
+        {
+            try
+            {
+                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(pontodescarteId, usuarioId, true, true, true, true);
                 return Ok(result);
             }
             catch (Exception ex)

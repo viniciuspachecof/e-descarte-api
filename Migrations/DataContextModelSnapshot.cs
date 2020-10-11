@@ -242,6 +242,9 @@ namespace e_descarte_api.Migrations
                     b.Property<int>("quant")
                         .HasColumnType("integer");
 
+                    b.Property<int>("status")
+                        .HasColumnType("integer");
+
                     b.Property<int>("usuarioId")
                         .HasColumnType("integer");
 

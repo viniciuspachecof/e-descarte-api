@@ -88,6 +88,7 @@ namespace e_descarte_api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     quant = table.Column<int>(nullable: false),
+                    status = table.Column<int>(nullable: false),
                     pontodescarteId = table.Column<int>(nullable: false),
                     itemId = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
