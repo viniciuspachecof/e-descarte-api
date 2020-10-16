@@ -19,6 +19,7 @@ namespace e_descarte_api.Data
         // PONTO DESCARTE
         Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeCidade, bool includeUsuario);
         Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeCidade, bool includeUsuario);
+        Task<PontoDescarte[]> GetPontoDescarteAsyncByUsuarioId(int usuarioId, bool includeCidade, bool includeUsuario);
 
         // ITEM
         Task<Item[]> GetAllItensAsync();

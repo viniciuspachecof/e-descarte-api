@@ -104,6 +104,27 @@ namespace e_descarte_api.Data
 
             return await query.FirstOrDefaultAsync();
         }
+
+        public async Task<PontoDescarte[]> GetPontoDescarteAsyncByUsuarioId(int usuarioId, bool includeCidade, bool includeUsuario)
+        {
+            IQueryable<PontoDescarte> query = _context.pontodescarte;
+       
+            if (includeCidade)
+            {
+                query = query.Include(pd => pd.cidade);
+            }
+
+            if (includeUsuario)
+            {
+                query = query.Include(pd => pd.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarte => pontodescarte.id)
+                         .Where(pontodescarte => pontodescarte.usuarioId == usuarioId);
+
+            return await query.ToArrayAsync();
+        }
         
         // ITEM
         public async Task<Item[]> GetAllItensAsync()
