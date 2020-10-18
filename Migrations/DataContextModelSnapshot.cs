@@ -286,17 +286,17 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
-                            email = "vinicius.pachecof@hotmail.com",
+                            email = "vinicius@hotmail.com",
                             nome = "Vinicius",
-                            senha = "123",
+                            senha = "123456789",
                             tipo = "CATADOR"
                         },
                         new
                         {
                             id = 2,
-                            email = "rodolfo.casagrande@hotmail.com",
+                            email = "rodolfo@hotmail.com",
                             nome = "Rodolfo",
-                            senha = "321",
+                            senha = "987654321",
                             tipo = "DESCARTANTE"
                         });
                 });
