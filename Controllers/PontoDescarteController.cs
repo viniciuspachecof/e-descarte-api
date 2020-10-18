@@ -48,6 +48,21 @@ namespace e_descarte_api.Controllers
             }
         }
 
+        [HttpGet("ByUsuario/{usuarioId}")]
+        public async Task<IActionResult> GetPontoDescarteAsyncByUsuarioId(int usuarioId)
+        {
+            try
+            {
+                var result = await _repo.GetPontoDescarteAsyncByUsuarioId(usuarioId, true, true);
+                
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> post(PontoDescarte model)
         {
