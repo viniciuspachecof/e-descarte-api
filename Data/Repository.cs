@@ -274,7 +274,39 @@ namespace e_descarte_api.Data
                          .Where(pdt => pdt.pontodescarteId == pontodescarteId && pdt.usuarioId == usuarioId);
 
             return await query.ToArrayAsync();
-        }       
+        }    
+
+        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(int pontodescarteId, string usuarioNome, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        {
+            IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
+
+            if (includePontoDescarte)
+            {
+                query = query.Include(pdt => pdt.pontodescarte);
+            }
+
+            if (includeCidade)
+            {
+                query = query.Include(pdt => pdt.pontodescarte)
+                             .ThenInclude(pd => pd.cidade);
+            }
+
+            if (includeItem)
+            {
+                query = query.Include(pdt => pdt.item);
+            }
+
+            if (includeUsuario)
+            {
+                query = query.Include(pdt => pdt.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pdt => pdt.id)                         
+                         .Where(pdt => pdt.pontodescarteId == pontodescarteId && EF.Functions.Like(pdt.usuario.nome.ToLower(), "%" + usuarioNome.ToLower() + "%"));
+
+            return await query.ToArrayAsync();
+        }      
 
         // CIDADE
         public async Task<Cidade[]> GetAllCidadesAsync()
