@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201018223744_initial")]
+    [Migration("20201020012226_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,6 +192,9 @@ namespace e_descarte_api.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("tipo")
+                        .HasColumnType("integer");
+
                     b.Property<int>("usuarioId")
                         .HasColumnType("integer");
 
@@ -213,6 +216,7 @@ namespace e_descarte_api.Migrations
                             longitude = -49.384514699999997,
                             nome = "FAMCRI",
                             status = true,
+                            tipo = 0,
                             usuarioId = 1
                         },
                         new
@@ -224,6 +228,7 @@ namespace e_descarte_api.Migrations
                             longitude = -49.3738259,
                             nome = "Faculdades ESUCRI",
                             status = true,
+                            tipo = 1,
                             usuarioId = 2
                         });
                 });

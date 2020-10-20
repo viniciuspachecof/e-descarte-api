@@ -5,7 +5,7 @@ namespace e_descarte_api.Models
     public class PontoDescarte
     {
         public PontoDescarte() { }
-        public PontoDescarte(int id, string nome, string fone, double latitude, double longitude, bool status, int cidadeId, int usuarioId)
+        public PontoDescarte(int id, string nome, string fone, double latitude, double longitude, bool status,  int tipo, int cidadeId, int usuarioId)
         {
             this.id = id;
             this.nome = nome;
@@ -14,6 +14,7 @@ namespace e_descarte_api.Models
             this.latitude = latitude;
             this.longitude = longitude;
             this.status = status;
+            this.tipo = tipo;
             this.cidadeId = cidadeId;
             this.usuarioId = usuarioId;        
         }
@@ -25,6 +26,7 @@ namespace e_descarte_api.Models
         public double longitude { get; set; }       
         public double latitude { get; set; }            
         public bool status { get; set; }            
+        public int tipo { get; set; }       
         public int cidadeId { get; set; }            
         public Cidade cidade { get; set; }  
         public int usuarioId { get; set; }            
