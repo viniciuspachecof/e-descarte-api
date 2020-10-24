@@ -12,6 +12,7 @@ namespace e_descarte_api.Data
         public DbSet<Item> item { get; set; }
         public DbSet<PontoDescarteItem> pontodescarteitem { get; set; }
         public DbSet<Cidade> cidade { get; set; }
+        public DbSet<RankingPontuacao> rankingpontuacao { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {              
@@ -29,16 +30,16 @@ namespace e_descarte_api.Data
 
             builder.Entity<Item>()
             .HasData(new List<Item>{
-                    new Item(1, "Rádio"),
-                    new Item(2, "Televisores"),
-                    new Item(3, "Tablets"),
-                    new Item(4, "Monitores"),
-                    new Item(5, "Teclados"),
-                    new Item(6, "Impressoras"),
-                    new Item(7, "Câmeras Fotográficas"),
-                    new Item(8, "Aparelhos de Som"),
-                    new Item(9, "Geladeira"),
-                    new Item(10, "Fogão"),
+                    new Item(1, "Rádio", 1),
+                    new Item(2, "Televisores", 2),
+                    new Item(3, "Tablets", 3),
+                    new Item(4, "Monitores", 4),
+                    new Item(5, "Teclados", 5),
+                    new Item(6, "Impressoras", 6),
+                    new Item(7, "Câmeras Fotográficas", 7),
+                    new Item(8, "Aparelhos de Som", 8),
+                    new Item(9, "Geladeira", 9),
+                    new Item(10, "Fogão", 10),
             });
 
             builder.Entity<Cidade>()

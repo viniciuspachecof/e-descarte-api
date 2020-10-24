@@ -90,6 +90,21 @@ namespace e_descarte_api.Controllers
             }
         }
 
+        [HttpGet("ByUsuarioTotalPonto/{usuarioId}")]
+        public async Task<IActionResult> GetPontoDescarteItensAsyncByUsuarioIdTotalPonto(int usuarioId)
+        {
+            try
+            {
+                var result = await _repo.GetPontoDescarteItensAsyncByUsuarioIdTotalPonto(usuarioId);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }  
+
         [HttpPost]
         public async Task<IActionResult> post(PontoDescarteItem model)
         {
@@ -99,7 +114,7 @@ namespace e_descarte_api.Controllers
 
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Ok(model);
+                    return Ok(model);              
                 }
             }
             catch (Exception ex)
@@ -109,7 +124,7 @@ namespace e_descarte_api.Controllers
 
             return BadRequest();
         }
-
+               
         [HttpPut("{pontodescarteitemId}")]
         public async Task<IActionResult> put(int pontodescarteitemId, PontoDescarteItem model)
         {

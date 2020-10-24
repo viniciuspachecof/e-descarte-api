@@ -108,6 +108,9 @@ namespace e_descarte_api.Migrations
                     b.Property<string>("nome")
                         .HasColumnType("text");
 
+                    b.Property<int>("ponto")
+                        .HasColumnType("integer");
+
                     b.HasKey("id");
 
                     b.ToTable("item");
@@ -116,52 +119,62 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
-                            nome = "Rádio"
+                            nome = "Rádio",
+                            ponto = 1
                         },
                         new
                         {
                             id = 2,
-                            nome = "Televisores"
+                            nome = "Televisores",
+                            ponto = 2
                         },
                         new
                         {
                             id = 3,
-                            nome = "Tablets"
+                            nome = "Tablets",
+                            ponto = 3
                         },
                         new
                         {
                             id = 4,
-                            nome = "Monitores"
+                            nome = "Monitores",
+                            ponto = 4
                         },
                         new
                         {
                             id = 5,
-                            nome = "Teclados"
+                            nome = "Teclados",
+                            ponto = 5
                         },
                         new
                         {
                             id = 6,
-                            nome = "Impressoras"
+                            nome = "Impressoras",
+                            ponto = 6
                         },
                         new
                         {
                             id = 7,
-                            nome = "Câmeras Fotográficas"
+                            nome = "Câmeras Fotográficas",
+                            ponto = 7
                         },
                         new
                         {
                             id = 8,
-                            nome = "Aparelhos de Som"
+                            nome = "Aparelhos de Som",
+                            ponto = 8
                         },
                         new
                         {
                             id = 9,
-                            nome = "Geladeira"
+                            nome = "Geladeira",
+                            ponto = 9
                         },
                         new
                         {
                             id = 10,
-                            nome = "Fogão"
+                            nome = "Fogão",
+                            ponto = 10
                         });
                 });
 
@@ -250,6 +263,9 @@ namespace e_descarte_api.Migrations
                     b.Property<int>("status")
                         .HasColumnType("integer");
 
+                    b.Property<int>("totalponto")
+                        .HasColumnType("integer");
+
                     b.Property<int>("usuarioId")
                         .HasColumnType("integer");
 
@@ -262,6 +278,26 @@ namespace e_descarte_api.Migrations
                     b.HasIndex("usuarioId");
 
                     b.ToTable("pontodescarteitem");
+                });
+
+            modelBuilder.Entity("e_descarte_api.Models.RankingPontuacao", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("pontuacao")
+                        .HasColumnType("text");
+
+                    b.Property<int>("usuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("usuarioId");
+
+                    b.ToTable("rankingpontuacao");
                 });
 
             modelBuilder.Entity("e_descarte_api.Models.Usuario", b =>
@@ -335,6 +371,15 @@ namespace e_descarte_api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("e_descarte_api.Models.Usuario", "usuario")
+                        .WithMany()
+                        .HasForeignKey("usuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("e_descarte_api.Models.RankingPontuacao", b =>
+                {
                     b.HasOne("e_descarte_api.Models.Usuario", "usuario")
                         .WithMany()
                         .HasForeignKey("usuarioId")

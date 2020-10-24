@@ -27,7 +27,8 @@ namespace e_descarte_api.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(nullable: true)
+                    nome = table.Column<string>(nullable: true),
+                    ponto = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,6 +84,26 @@ namespace e_descarte_api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "rankingpontuacao",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    pontuacao = table.Column<string>(nullable: true),
+                    usuarioId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_rankingpontuacao", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_rankingpontuacao_usuario_usuarioId",
+                        column: x => x.usuarioId,
+                        principalTable: "usuario",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "pontodescarteitem",
                 columns: table => new
                 {
@@ -90,6 +111,7 @@ namespace e_descarte_api.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     quant = table.Column<int>(nullable: false),
                     status = table.Column<int>(nullable: false),
+                    totalponto = table.Column<int>(nullable: false),
                     pontodescarteId = table.Column<int>(nullable: false),
                     itemId = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
@@ -136,19 +158,19 @@ namespace e_descarte_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "item",
-                columns: new[] { "id", "nome" },
+                columns: new[] { "id", "nome", "ponto" },
                 values: new object[,]
                 {
-                    { 10, "Fogão" },
-                    { 9, "Geladeira" },
-                    { 8, "Aparelhos de Som" },
-                    { 7, "Câmeras Fotográficas" },
-                    { 6, "Impressoras" },
-                    { 1, "Rádio" },
-                    { 4, "Monitores" },
-                    { 3, "Tablets" },
-                    { 2, "Televisores" },
-                    { 5, "Teclados" }
+                    { 10, "Fogão", 10 },
+                    { 9, "Geladeira", 9 },
+                    { 8, "Aparelhos de Som", 8 },
+                    { 7, "Câmeras Fotográficas", 7 },
+                    { 6, "Impressoras", 6 },
+                    { 1, "Rádio", 1 },
+                    { 4, "Monitores", 4 },
+                    { 3, "Tablets", 3 },
+                    { 2, "Televisores", 2 },
+                    { 5, "Teclados", 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -193,12 +215,20 @@ namespace e_descarte_api.Migrations
                 name: "IX_pontodescarteitem_usuarioId",
                 table: "pontodescarteitem",
                 column: "usuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_rankingpontuacao_usuarioId",
+                table: "rankingpontuacao",
+                column: "usuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "pontodescarteitem");
+
+            migrationBuilder.DropTable(
+                name: "rankingpontuacao");
 
             migrationBuilder.DropTable(
                 name: "item");

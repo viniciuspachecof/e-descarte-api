@@ -31,9 +31,15 @@ namespace e_descarte_api.Data
         Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
         Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(int pontodescarteId, int usuarioId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
         Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(int pontodescarteId, string usuarioNome, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario);
+        Task<int> GetPontoDescarteItensAsyncByUsuarioIdTotalPonto(int usuarioId);
 
         // CIDADE
         Task<Cidade[]> GetAllCidadesAsync();
         Task<Cidade> GetCidadeAsyncById(int cidadeId);
+
+        // RANKING PONTUACAO
+        Task<RankingPontuacao[]> GetAllRankingPontuacaoAsync(bool includeUsuario);
+        Task<RankingPontuacao> GetRankingPontuacaoAsyncById(int rankingpontuacaoId, bool includeUsuario);
+        Task<RankingPontuacao> GetRankingPontuacaoAsyncByUsuarioId(int usuarioId, bool includeUsuario);
     }
 }
