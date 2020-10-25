@@ -39,7 +39,7 @@ namespace e_descarte_api.Data
 
         // RANKING PONTUACAO
         Task<RankingPontuacao[]> GetAllRankingPontuacaoAsync(bool includeUsuario);
-        Task<RankingPontuacao> GetRankingPontuacaoAsyncById(int rankingpontuacaoId, bool includeUsuario);
+        Task<RankingPontuacao> GetRankingPontuacaoAsyncById(int usuarioId, bool includeUsuario);
         Task<RankingPontuacao> GetRankingPontuacaoAsyncByUsuarioId(int usuarioId, bool includeUsuario);
     }
 }
