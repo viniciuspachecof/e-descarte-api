@@ -61,6 +61,7 @@ namespace e_descarte_api.Migrations
                     fone = table.Column<string>(nullable: true),
                     longitude = table.Column<double>(nullable: false),
                     latitude = table.Column<double>(nullable: false),
+                    ativo = table.Column<bool>(nullable: false),
                     status = table.Column<bool>(nullable: false),
                     tipo = table.Column<int>(nullable: false),
                     cidadeId = table.Column<int>(nullable: false),
@@ -89,7 +90,7 @@ namespace e_descarte_api.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    pontuacao = table.Column<string>(nullable: true),
+                    pontuacao = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -166,10 +167,10 @@ namespace e_descarte_api.Migrations
                     { 8, "Aparelhos de Som", 8 },
                     { 7, "Câmeras Fotográficas", 7 },
                     { 6, "Impressoras", 6 },
-                    { 1, "Rádio", 1 },
+                    { 2, "Televisores", 2 },
                     { 4, "Monitores", 4 },
                     { 3, "Tablets", 3 },
-                    { 2, "Televisores", 2 },
+                    { 1, "Rádio", 1 },
                     { 5, "Teclados", 5 }
                 });
 
@@ -178,17 +179,27 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "email", "nome", "senha", "tipo" },
                 values: new object[,]
                 {
+                    { 2, "rodolfo@hotmail.com", "Rodolfo", "987654321", "DESCARTANTE" },
                     { 1, "vinicius@hotmail.com", "Vinicius", "123456789", "CATADOR" },
-                    { 2, "rodolfo@hotmail.com", "Rodolfo", "987654321", "DESCARTANTE" }
+                    { 3, "admin@hotmail.com", "Administrador", "admin1234", "ADMINISTRADOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "pontodescarte",
-                columns: new[] { "id", "cidadeId", "fone", "latitude", "longitude", "nome", "status", "tipo", "usuarioId" },
+                columns: new[] { "id", "ativo", "cidadeId", "fone", "latitude", "longitude", "nome", "status", "tipo", "usuarioId" },
                 values: new object[,]
                 {
-                    { 1, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", true, 0, 1 },
-                    { 2, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 1, 2 }
+                    { 1, true, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", false, 0, 1 },
+                    { 2, true, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "rankingpontuacao",
+                columns: new[] { "id", "pontuacao", "usuarioId" },
+                values: new object[,]
+                {
+                    { 1, 0, 1 },
+                    { 2, 0, 2 }
                 });
 
             migrationBuilder.CreateIndex(

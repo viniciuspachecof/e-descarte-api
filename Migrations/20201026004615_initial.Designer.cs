@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201024153311_initial")]
+    [Migration("20201026004615_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -187,6 +187,9 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<bool>("ativo")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("cidadeId")
                         .HasColumnType("integer");
 
@@ -223,18 +226,20 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
+                            ativo = true,
                             cidadeId = 1,
                             fone = "(48) 3445-8811",
                             latitude = -28.6868546,
                             longitude = -49.384514699999997,
                             nome = "FAMCRI",
-                            status = true,
+                            status = false,
                             tipo = 0,
                             usuarioId = 1
                         },
                         new
                         {
                             id = 2,
+                            ativo = true,
                             cidadeId = 2,
                             fone = "(48) 3431-3700",
                             latitude = -28.681176099999998,
@@ -289,8 +294,8 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("pontuacao")
-                        .HasColumnType("text");
+                    b.Property<int>("pontuacao")
+                        .HasColumnType("integer");
 
                     b.Property<int>("usuarioId")
                         .HasColumnType("integer");
@@ -300,6 +305,20 @@ namespace e_descarte_api.Migrations
                     b.HasIndex("usuarioId");
 
                     b.ToTable("rankingpontuacao");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            pontuacao = 0,
+                            usuarioId = 1
+                        },
+                        new
+                        {
+                            id = 2,
+                            pontuacao = 0,
+                            usuarioId = 2
+                        });
                 });
 
             modelBuilder.Entity("e_descarte_api.Models.Usuario", b =>
@@ -341,6 +360,14 @@ namespace e_descarte_api.Migrations
                             nome = "Rodolfo",
                             senha = "987654321",
                             tipo = "DESCARTANTE"
+                        },
+                        new
+                        {
+                            id = 3,
+                            email = "admin@hotmail.com",
+                            nome = "Administrador",
+                            senha = "admin1234",
+                            tipo = "ADMINISTRADOR"
                         });
                 });
 

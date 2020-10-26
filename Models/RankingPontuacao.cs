@@ -5,7 +5,7 @@ namespace e_descarte_api.Models
     public class RankingPontuacao
     {
         public RankingPontuacao() { }
-        public RankingPontuacao(int id, string pontuacao, int usuarioId)
+        public RankingPontuacao(int id, int pontuacao, int usuarioId)
         {
             this.id = id;
             this.pontuacao = pontuacao;
@@ -13,7 +13,7 @@ namespace e_descarte_api.Models
         }
 
         public int id { get; set; }
-        public string pontuacao { get; set; }       
+        public int pontuacao { get; set; }       
         public int usuarioId { get; set; }            
         public Usuario usuario { get; set; }                   
     }

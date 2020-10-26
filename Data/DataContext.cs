@@ -20,12 +20,19 @@ namespace e_descarte_api.Data
             .HasData(new List<Usuario>{
                     new Usuario(1, "Vinicius", "vinicius@hotmail.com", "123456789", "CATADOR"),
                     new Usuario(2, "Rodolfo", "rodolfo@hotmail.com", "987654321", "DESCARTANTE"),
+                    new Usuario(3, "Administrador", "admin@hotmail.com", "admin1234", "ADMINISTRADOR")
+            });
+
+            builder.Entity<RankingPontuacao>()
+            .HasData(new List<RankingPontuacao>{
+                    new RankingPontuacao(1, 0, 1),
+                    new RankingPontuacao(2, 0, 2)
             });
 
             builder.Entity<PontoDescarte>()
             .HasData(new List<PontoDescarte>{
-                    new PontoDescarte(1, "FAMCRI", "(48) 3445-8811", -28.6868546, -49.3845147, true, 0, 1, 1),
-                    new PontoDescarte(2, "Faculdades ESUCRI", "(48) 3431-3700", -28.6811761, -49.3738259, true, 1, 2, 2)
+                    new PontoDescarte(1, "FAMCRI", "(48) 3445-8811", -28.6868546, -49.3845147, true, false, 0, 1, 1),
+                    new PontoDescarte(2, "Faculdades ESUCRI", "(48) 3431-3700", -28.6811761, -49.3738259, true, true, 1, 2, 2)
             });
 
             builder.Entity<Item>()
