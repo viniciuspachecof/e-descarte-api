@@ -57,7 +57,7 @@ namespace e_descarte_api.Data
             IQueryable<Usuario> query = _context.usuario;
 
             query = query.AsNoTracking()
-                         .OrderBy(usuario => usuario.id)                         
+                         .OrderBy(usuario => usuario.id)
                          .Where(usuario => usuario.email == email && usuario.senha == senha);
 
             return await query.FirstOrDefaultAsync();
@@ -87,7 +87,7 @@ namespace e_descarte_api.Data
         public async Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeCidade, bool includeUsuario)
         {
             IQueryable<PontoDescarte> query = _context.pontodescarte;
-       
+
             if (includeCidade)
             {
                 query = query.Include(pd => pd.cidade);
@@ -108,7 +108,7 @@ namespace e_descarte_api.Data
         public async Task<PontoDescarte[]> GetPontoDescarteAsyncByUsuarioId(int usuarioId, bool includeCidade, bool includeUsuario)
         {
             IQueryable<PontoDescarte> query = _context.pontodescarte;
-       
+
             if (includeCidade)
             {
                 query = query.Include(pd => pd.cidade);
@@ -125,7 +125,7 @@ namespace e_descarte_api.Data
 
             return await query.ToArrayAsync();
         }
-        
+
         // ITEM
         public async Task<Item[]> GetAllItensAsync()
         {
@@ -238,7 +238,7 @@ namespace e_descarte_api.Data
             }
 
             query = query.AsNoTracking()
-                         .OrderBy(pdt => pdt.id)                         
+                         .OrderBy(pdt => pdt.id)
                          .Where(pdt => pdt.pontodescarteId == pontodescarteId);
 
             return await query.ToArrayAsync();
@@ -270,11 +270,11 @@ namespace e_descarte_api.Data
             }
 
             query = query.AsNoTracking()
-                         .OrderBy(pdt => pdt.id)                         
+                         .OrderBy(pdt => pdt.id)
                          .Where(pdt => pdt.pontodescarteId == pontodescarteId && pdt.usuarioId == usuarioId);
 
             return await query.ToArrayAsync();
-        }    
+        }
 
         public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(int pontodescarteId, string usuarioNome, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
         {
@@ -302,17 +302,28 @@ namespace e_descarte_api.Data
             }
 
             query = query.AsNoTracking()
-                         .OrderBy(pdt => pdt.id)                         
+                         .OrderBy(pdt => pdt.id)
                          .Where(pdt => pdt.pontodescarteId == pontodescarteId && EF.Functions.Like(pdt.usuario.nome.ToLower(), "%" + usuarioNome.ToLower() + "%"));
 
             return await query.ToArrayAsync();
-        }      
+        }
+
+        public Task<int> GetPontoDescarteItensAsyncByUsuarioIdTotalPonto(int usuarioId)
+        {
+            IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
+            
+            var results = _context.pontodescarteitem
+                        .Where(pontodescarteitem => pontodescarteitem.usuarioId == usuarioId && pontodescarteitem.status == 1)
+                        .Sum(pontodescarteitem => pontodescarteitem.totalponto);
+    
+            return Task.FromResult(results);
+        }
 
         // CIDADE
         public async Task<Cidade[]> GetAllCidadesAsync()
         {
             IQueryable<Cidade> query = _context.cidade;
-        
+
             query = query.AsNoTracking()
                          .OrderBy(cidade => cidade.id);
 
@@ -322,7 +333,7 @@ namespace e_descarte_api.Data
         public async Task<Cidade> GetCidadeAsyncById(int cidadeId)
         {
             IQueryable<Cidade> query = _context.cidade;
-        
+
             query = query.AsNoTracking()
                          .OrderBy(cidade => cidade.id)
                          .Where(cidade => cidade.id == cidadeId);
@@ -330,5 +341,52 @@ namespace e_descarte_api.Data
             return await query.FirstOrDefaultAsync();
         }
 
+        // RANKING PONTUACAO
+        public async Task<RankingPontuacao[]> GetAllRankingPontuacaoAsync(bool includeUsuario)
+        {
+            IQueryable<RankingPontuacao> query = _context.rankingpontuacao;
+
+            if (includeUsuario)
+            {
+                query = query.Include(rankingpontuacao => rankingpontuacao.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(rankingpontuacao => rankingpontuacao.id);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<RankingPontuacao> GetRankingPontuacaoAsyncById(int rankingpontuacaoId, bool includeUsuario)
+        {
+            IQueryable<RankingPontuacao> query = _context.rankingpontuacao;
+
+            if (includeUsuario)
+            {
+                query = query.Include(rankingpontuacao => rankingpontuacao.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(rankingpontuacao => rankingpontuacao.id)
+                         .Where(rankingpontuacao => rankingpontuacao.id == rankingpontuacaoId);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<RankingPontuacao> GetRankingPontuacaoAsyncByUsuarioId(int usuarioId, bool includeUsuario)
+        {
+            IQueryable<RankingPontuacao> query = _context.rankingpontuacao;
+
+            if (includeUsuario)
+            {
+                query = query.Include(rankingpontuacao => rankingpontuacao.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(rankingpontuacao => rankingpontuacao.id)
+                         .Where(rankingpontuacao => rankingpontuacao.usuarioId == usuarioId);
+
+            return await query.FirstOrDefaultAsync();
+        }
     }
 }

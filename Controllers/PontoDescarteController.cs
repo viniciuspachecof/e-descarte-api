@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using e_descarte_api.Data;
 using e_descarte_api.Models;
 using Microsoft.AspNetCore.Mvc;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
 
 namespace e_descarte_api.Controllers
 {
@@ -39,7 +42,7 @@ namespace e_descarte_api.Controllers
             try
             {
                 var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true, true);
-                
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -54,7 +57,7 @@ namespace e_descarte_api.Controllers
             try
             {
                 var result = await _repo.GetPontoDescarteAsyncByUsuarioId(usuarioId, true, true);
-                
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -69,11 +72,36 @@ namespace e_descarte_api.Controllers
             try
             {
                 _repo.Add(model);
-
+                
                 if (await _repo.SaveChangesAsync())
                 {
+                    // var message = new MimeMessage();
+                    // message.From.Add(new MailboxAddress("E-DESCARTE", "edescarteoficial@gmail.com"));
+                    // message.To.Add(new MailboxAddress("NOME DE QUEM RECEBE", "EMAIL (gmail) DE QUEM RECEBE"));
+                    // message.Subject = "Novo ponto de descarte cadastrado!";
+
+                    // var usuario = await _repo.GetUsuarioAsyncById(model.usuarioId);
+
+                    // if (usuario == null) return NotFound();
+
+                    // message.Body = new TextPart("plain")
+                    // {
+                    //     Text = "Código Ponto descarte: " + model.id + "\nUsuário responsável: " + usuario.nome + "\nPonto cadastrado: " + model.nome + "\nObs.: Acesse o aplicativo como administrador para a aprovação/reprovação deste ponto de descarte."
+                    // };
+
+                    // using (var client = new SmtpClient())
+                    // {
+                    //     client.Connect("smtp.gmail.com", 587, false);
+                    //     client.Authenticate("edescarteoficial@gmail.com", "edescarte123#");
+
+                    //     client.Send(message);
+
+                    //     client.Disconnect(true);
+                    // }
+
                     return Ok(model);
                 }
+
             }
             catch (Exception ex)
             {
@@ -89,14 +117,14 @@ namespace e_descarte_api.Controllers
             try
             {
                 var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
-                if(pontodescarte == null) return NotFound();
+                if (pontodescarte == null) return NotFound();
 
                 _repo.Update(model);
 
-                if(await _repo.SaveChangesAsync())
+                if (await _repo.SaveChangesAsync())
                 {
                     return Ok(model);
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -112,14 +140,14 @@ namespace e_descarte_api.Controllers
             try
             {
                 var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
-                if(pontodescarte == null) return NotFound();
+                if (pontodescarte == null) return NotFound();
 
                 _repo.Delete(pontodescarte);
 
-                if(await _repo.SaveChangesAsync())
+                if (await _repo.SaveChangesAsync())
                 {
-                    return Ok( new { message = "Deletado"});
-                }                
+                    return Ok(new { message = "Deletado" });
+                }
             }
             catch (Exception ex)
             {
