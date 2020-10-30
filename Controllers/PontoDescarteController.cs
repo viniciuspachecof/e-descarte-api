@@ -26,7 +26,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetAllPontosDescarteAsync(true, true);
+                var result = await _repo.GetAllPontosDescarteAsync(true);
 
                 return Ok(result);
             }
@@ -41,7 +41,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true, true);
+                var result = await _repo.GetPontoDescarteAsyncById(pontodescarteId, true);
 
                 return Ok(result);
             }
@@ -56,7 +56,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteAsyncByUsuarioId(usuarioId, true, true);
+                var result = await _repo.GetPontoDescarteAsyncByUsuarioId(usuarioId, true);
 
                 return Ok(result);
             }
@@ -75,29 +75,29 @@ namespace e_descarte_api.Controllers
                 
                 if (await _repo.SaveChangesAsync())
                 {
-                    // var message = new MimeMessage();
-                    // message.From.Add(new MailboxAddress("E-DESCARTE", "edescarteoficial@gmail.com"));
-                    // message.To.Add(new MailboxAddress("NOME DE QUEM RECEBE", "EMAIL (gmail) DE QUEM RECEBE"));
-                    // message.Subject = "Novo ponto de descarte cadastrado!";
+                    var message = new MimeMessage();
+                    message.From.Add(new MailboxAddress("NOTIFICAÇÃO E-DESCARTE", "notificacaoedescarteoficial@gmail.com"));
+                    message.To.Add(new MailboxAddress("E-DESCARTE", "edescarteoficial@gmail.com"));
+                    message.Subject = "Novo ponto de descarte cadastrado!";
 
-                    // var usuario = await _repo.GetUsuarioAsyncById(model.usuarioId);
+                    var usuario = await _repo.GetUsuarioAsyncById(model.usuarioId);
 
-                    // if (usuario == null) return NotFound();
+                    if (usuario == null) return NotFound();
 
-                    // message.Body = new TextPart("plain")
-                    // {
-                    //     Text = "Código Ponto descarte: " + model.id + "\nUsuário responsável: " + usuario.nome + "\nPonto cadastrado: " + model.nome + "\nObs.: Acesse o aplicativo como administrador para a aprovação/reprovação deste ponto de descarte."
-                    // };
+                    message.Body = new TextPart("plain")
+                    {
+                        Text = "Código Ponto descarte: " + model.id + "\nUsuário responsável: " + usuario.nome + "\nEmail do usuário: " + usuario.email + "\nTelefone do usuário: " + usuario.fone + "\nPonto cadastrado: " + model.nome + "\nObs.: Acesse o aplicativo como administrador para a aprovação/reprovação deste ponto de descarte."
+                    };
 
-                    // using (var client = new SmtpClient())
-                    // {
-                    //     client.Connect("smtp.gmail.com", 587, false);
-                    //     client.Authenticate("edescarteoficial@gmail.com", "edescarte123#");
+                    using (var client = new SmtpClient())
+                    {
+                        client.Connect("smtp.gmail.com", 587, false);
+                        client.Authenticate("notificacaoedescarteoficial@gmail.com", "edescarte123");
 
-                    //     client.Send(message);
+                        client.Send(message);
 
-                    //     client.Disconnect(true);
-                    // }
+                        client.Disconnect(true);
+                    }
 
                     return Ok(model);
                 }
@@ -116,7 +116,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
+                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
                 if (pontodescarte == null) return NotFound();
 
                 _repo.Update(model);
@@ -139,7 +139,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false, false);
+                var pontodescarte = await _repo.GetPontoDescarteAsyncById(pontodescarteId, false);
                 if (pontodescarte == null) return NotFound();
 
                 _repo.Delete(pontodescarte);

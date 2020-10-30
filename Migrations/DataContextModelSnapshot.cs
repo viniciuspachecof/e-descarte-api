@@ -18,86 +18,6 @@ namespace e_descarte_api.Migrations
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("e_descarte_api.Models.Cidade", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("nome")
-                        .HasColumnType("text");
-
-                    b.Property<string>("uf")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("cidade");
-
-                    b.HasData(
-                        new
-                        {
-                            id = 1,
-                            nome = "Joinville",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 2,
-                            nome = "Florianópolis",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 3,
-                            nome = "Blumenau",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 4,
-                            nome = "São José",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 5,
-                            nome = "Chapecó",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 6,
-                            nome = "Itajaí",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 7,
-                            nome = "Criciúma",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 8,
-                            nome = "Jaraguá do Sul",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 9,
-                            nome = "Palhoça",
-                            uf = "SC"
-                        },
-                        new
-                        {
-                            id = 10,
-                            nome = "Lages",
-                            uf = "SC"
-                        });
-                });
-
             modelBuilder.Entity("e_descarte_api.Models.Item", b =>
                 {
                     b.Property<int>("id")
@@ -188,9 +108,6 @@ namespace e_descarte_api.Migrations
                     b.Property<bool>("ativo")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("cidadeId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("fone")
                         .HasColumnType("text");
 
@@ -214,7 +131,8 @@ namespace e_descarte_api.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("cidadeId");
+                    b.HasIndex("nome")
+                        .IsUnique();
 
                     b.HasIndex("usuarioId");
 
@@ -225,7 +143,6 @@ namespace e_descarte_api.Migrations
                         {
                             id = 1,
                             ativo = true,
-                            cidadeId = 1,
                             fone = "(48) 3445-8811",
                             latitude = -28.6868546,
                             longitude = -49.384514699999997,
@@ -238,7 +155,6 @@ namespace e_descarte_api.Migrations
                         {
                             id = 2,
                             ativo = true,
-                            cidadeId = 2,
                             fone = "(48) 3431-3700",
                             latitude = -28.681176099999998,
                             longitude = -49.3738259,
@@ -329,6 +245,9 @@ namespace e_descarte_api.Migrations
                     b.Property<string>("email")
                         .HasColumnType("text");
 
+                    b.Property<string>("fone")
+                        .HasColumnType("text");
+
                     b.Property<string>("nome")
                         .HasColumnType("text");
 
@@ -347,6 +266,7 @@ namespace e_descarte_api.Migrations
                         {
                             id = 1,
                             email = "vinicius@hotmail.com",
+                            fone = "(48) 99999-9999",
                             nome = "Vinicius",
                             senha = "123456789",
                             tipo = "CATADOR"
@@ -355,6 +275,7 @@ namespace e_descarte_api.Migrations
                         {
                             id = 2,
                             email = "rodolfo@hotmail.com",
+                            fone = "(48) 88888-8888",
                             nome = "Rodolfo",
                             senha = "987654321",
                             tipo = "DESCARTANTE"
@@ -371,12 +292,6 @@ namespace e_descarte_api.Migrations
 
             modelBuilder.Entity("e_descarte_api.Models.PontoDescarte", b =>
                 {
-                    b.HasOne("e_descarte_api.Models.Cidade", "cidade")
-                        .WithMany()
-                        .HasForeignKey("cidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("e_descarte_api.Models.Usuario", "usuario")
                         .WithMany()
                         .HasForeignKey("usuarioId")

@@ -64,14 +64,9 @@ namespace e_descarte_api.Data
         }
 
         // PONTO DESCARTE
-        public async Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarte[]> GetAllPontosDescarteAsync(bool includeUsuario)
         {
             IQueryable<PontoDescarte> query = _context.pontodescarte;
-
-            if (includeCidade)
-            {
-                query = query.Include(pd => pd.cidade);
-            }
 
             if (includeUsuario)
             {
@@ -84,15 +79,10 @@ namespace e_descarte_api.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarte> GetPontoDescarteAsyncById(int pontodescarteId, bool includeUsuario)
         {
             IQueryable<PontoDescarte> query = _context.pontodescarte;
-
-            if (includeCidade)
-            {
-                query = query.Include(pd => pd.cidade);
-            }
-
+         
             if (includeUsuario)
             {
                 query = query.Include(pd => pd.usuario);
@@ -105,14 +95,9 @@ namespace e_descarte_api.Data
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<PontoDescarte[]> GetPontoDescarteAsyncByUsuarioId(int usuarioId, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarte[]> GetPontoDescarteAsyncByUsuarioId(int usuarioId, bool includeUsuario)
         {
-            IQueryable<PontoDescarte> query = _context.pontodescarte;
-
-            if (includeCidade)
-            {
-                query = query.Include(pd => pd.cidade);
-            }
+            IQueryable<PontoDescarte> query = _context.pontodescarte;        
 
             if (includeUsuario)
             {
@@ -149,20 +134,14 @@ namespace e_descarte_api.Data
         }
 
         // PONTO DESCARTE ITEM
-        public async Task<PontoDescarteItem[]> GetAllPontoDescarteItensAsync(bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarteItem[]> GetAllPontoDescarteItensAsync(bool includePontoDescarte, bool includeItem, bool includeUsuario)
         {
             IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
 
             if (includePontoDescarte)
             {
                 query = query.Include(pdt => pdt.pontodescarte);
-            }
-
-            if (includeCidade)
-            {
-                query = query.Include(pdt => pdt.pontodescarte)
-                             .ThenInclude(pd => pd.cidade);
-            }
+            }        
 
             if (includeItem)
             {
@@ -180,19 +159,13 @@ namespace e_descarte_api.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<PontoDescarteItem> GetPontoDescarteItemAsyncById(int pontodescarteitemId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarteItem> GetPontoDescarteItemAsyncById(int pontodescarteitemId, bool includePontoDescarte, bool includeItem, bool includeUsuario)
         {
             IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
 
             if (includePontoDescarte)
             {
                 query = query.Include(pdt => pdt.pontodescarte);
-            }
-
-            if (includeCidade)
-            {
-                query = query.Include(pdt => pdt.pontodescarte)
-                             .ThenInclude(pd => pd.cidade);
             }
 
             if (includeItem)
@@ -212,19 +185,13 @@ namespace e_descarte_api.Data
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteId(int pontodescarteId, bool includePontoDescarte, bool includeItem, bool includeUsuario)
         {
             IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
 
             if (includePontoDescarte)
             {
                 query = query.Include(pdt => pdt.pontodescarte);
-            }
-
-            if (includeCidade)
-            {
-                query = query.Include(pdt => pdt.pontodescarte)
-                             .ThenInclude(pd => pd.cidade);
             }
 
             if (includeItem)
@@ -244,19 +211,13 @@ namespace e_descarte_api.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(int pontodescarteId, int usuarioId, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(int pontodescarteId, int usuarioId, bool includePontoDescarte, bool includeItem, bool includeUsuario)
         {
             IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
 
             if (includePontoDescarte)
             {
                 query = query.Include(pdt => pdt.pontodescarte);
-            }
-
-            if (includeCidade)
-            {
-                query = query.Include(pdt => pdt.pontodescarte)
-                             .ThenInclude(pd => pd.cidade);
             }
 
             if (includeItem)
@@ -276,19 +237,13 @@ namespace e_descarte_api.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(int pontodescarteId, string usuarioNome, bool includePontoDescarte, bool includeItem, bool includeCidade, bool includeUsuario)
+        public async Task<PontoDescarteItem[]> GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(int pontodescarteId, string usuarioNome, bool includePontoDescarte, bool includeItem, bool includeUsuario)
         {
             IQueryable<PontoDescarteItem> query = _context.pontodescarteitem;
 
             if (includePontoDescarte)
             {
                 query = query.Include(pdt => pdt.pontodescarte);
-            }
-
-            if (includeCidade)
-            {
-                query = query.Include(pdt => pdt.pontodescarte)
-                             .ThenInclude(pd => pd.cidade);
             }
 
             if (includeItem)
@@ -317,28 +272,6 @@ namespace e_descarte_api.Data
                         .Sum(pontodescarteitem => pontodescarteitem.totalponto);
     
             return Task.FromResult(results);
-        }
-
-        // CIDADE
-        public async Task<Cidade[]> GetAllCidadesAsync()
-        {
-            IQueryable<Cidade> query = _context.cidade;
-
-            query = query.AsNoTracking()
-                         .OrderBy(cidade => cidade.id);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<Cidade> GetCidadeAsyncById(int cidadeId)
-        {
-            IQueryable<Cidade> query = _context.cidade;
-
-            query = query.AsNoTracking()
-                         .OrderBy(cidade => cidade.id)
-                         .Where(cidade => cidade.id == cidadeId);
-
-            return await query.FirstOrDefaultAsync();
         }
 
         // RANKING PONTUACAO

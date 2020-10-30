@@ -8,20 +8,6 @@ namespace e_descarte_api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "cidade",
-                columns: table => new
-                {
-                    id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    nome = table.Column<string>(nullable: true),
-                    uf = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_cidade", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "item",
                 columns: table => new
                 {
@@ -43,6 +29,7 @@ namespace e_descarte_api.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     nome = table.Column<string>(nullable: true),
                     email = table.Column<string>(nullable: true),
+                    fone = table.Column<string>(nullable: true),
                     senha = table.Column<string>(nullable: true),
                     tipo = table.Column<string>(nullable: true)
                 },
@@ -64,18 +51,11 @@ namespace e_descarte_api.Migrations
                     ativo = table.Column<bool>(nullable: false),
                     status = table.Column<bool>(nullable: false),
                     tipo = table.Column<int>(nullable: false),
-                    cidadeId = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_pontodescarte", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_pontodescarte_cidade_cidadeId",
-                        column: x => x.cidadeId,
-                        principalTable: "cidade",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_pontodescarte_usuario_usuarioId",
                         column: x => x.usuarioId,
@@ -141,56 +121,39 @@ namespace e_descarte_api.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "cidade",
-                columns: new[] { "id", "nome", "uf" },
-                values: new object[,]
-                {
-                    { 1, "Joinville", "SC" },
-                    { 2, "Florianópolis", "SC" },
-                    { 3, "Blumenau", "SC" },
-                    { 4, "São José", "SC" },
-                    { 5, "Chapecó", "SC" },
-                    { 6, "Itajaí", "SC" },
-                    { 7, "Criciúma", "SC" },
-                    { 8, "Jaraguá do Sul", "SC" },
-                    { 9, "Palhoça", "SC" },
-                    { 10, "Lages", "SC" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "item",
                 columns: new[] { "id", "nome", "ponto" },
                 values: new object[,]
                 {
-                    { 10, "Fogão", 10 },
-                    { 9, "Geladeira", 9 },
-                    { 8, "Aparelhos de Som", 8 },
-                    { 7, "Câmeras Fotográficas", 7 },
-                    { 6, "Impressoras", 6 },
-                    { 2, "Televisores", 2 },
-                    { 4, "Monitores", 4 },
-                    { 3, "Tablets", 3 },
                     { 1, "Rádio", 1 },
-                    { 5, "Teclados", 5 }
+                    { 2, "Televisores", 2 },
+                    { 3, "Tablets", 3 },
+                    { 4, "Monitores", 4 },
+                    { 5, "Teclados", 5 },
+                    { 6, "Impressoras", 6 },
+                    { 7, "Câmeras Fotográficas", 7 },
+                    { 8, "Aparelhos de Som", 8 },
+                    { 9, "Geladeira", 9 },
+                    { 10, "Fogão", 10 }
                 });
 
             migrationBuilder.InsertData(
                 table: "usuario",
-                columns: new[] { "id", "email", "nome", "senha", "tipo" },
+                columns: new[] { "id", "email", "fone", "nome", "senha", "tipo" },
                 values: new object[,]
                 {
-                    { 2, "rodolfo@hotmail.com", "Rodolfo", "987654321", "DESCARTANTE" },
-                    { 1, "vinicius@hotmail.com", "Vinicius", "123456789", "CATADOR" },
-                    { 3, "admin@hotmail.com", "Administrador", "admin1234", "ADMINISTRADOR" }
+                    { 1, "vinicius@hotmail.com", "(48) 99999-9999", "Vinicius", "123456789", "CATADOR" },
+                    { 2, "rodolfo@hotmail.com", "(48) 88888-8888", "Rodolfo", "987654321", "DESCARTANTE" },
+                    { 3, "admin@hotmail.com", null, "Administrador", "admin1234", "ADMINISTRADOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "pontodescarte",
-                columns: new[] { "id", "ativo", "cidadeId", "fone", "latitude", "longitude", "nome", "status", "tipo", "usuarioId" },
+                columns: new[] { "id", "ativo", "fone", "latitude", "longitude", "nome", "status", "tipo", "usuarioId" },
                 values: new object[,]
                 {
-                    { 1, true, 1, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", false, 0, 1 },
-                    { 2, true, 2, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 1, 2 }
+                    { 1, true, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", false, 0, 1 },
+                    { 2, true, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 1, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -203,9 +166,10 @@ namespace e_descarte_api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_pontodescarte_cidadeId",
+                name: "IX_pontodescarte_nome",
                 table: "pontodescarte",
-                column: "cidadeId");
+                column: "nome",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_pontodescarte_usuarioId",
@@ -246,9 +210,6 @@ namespace e_descarte_api.Migrations
 
             migrationBuilder.DropTable(
                 name: "pontodescarte");
-
-            migrationBuilder.DropTable(
-                name: "cidade");
 
             migrationBuilder.DropTable(
                 name: "usuario");
