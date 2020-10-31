@@ -71,6 +71,7 @@ namespace e_descarte_api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     pontuacao = table.Column<int>(nullable: false),
+                    nivel = table.Column<int>(nullable: false),
                     usuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -158,11 +159,11 @@ namespace e_descarte_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "rankingpontuacao",
-                columns: new[] { "id", "pontuacao", "usuarioId" },
+                columns: new[] { "id", "nivel", "pontuacao", "usuarioId" },
                 values: new object[,]
                 {
-                    { 1, 0, 1 },
-                    { 2, 0, 2 }
+                    { 1, 0, 0, 1 },
+                    { 2, 0, 0, 2 }
                 });
 
             migrationBuilder.CreateIndex(

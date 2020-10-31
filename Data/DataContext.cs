@@ -24,8 +24,8 @@ namespace e_descarte_api.Data
 
             builder.Entity<RankingPontuacao>()
             .HasData(new List<RankingPontuacao>{
-                    new RankingPontuacao(1, 0, 1),
-                    new RankingPontuacao(2, 0, 2)
+                    new RankingPontuacao(1, 0, 0, 1),
+                    new RankingPontuacao(2, 0, 0, 2)
             });
 
             builder.Entity<PontoDescarte>()

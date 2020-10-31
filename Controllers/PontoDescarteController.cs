@@ -36,6 +36,21 @@ namespace e_descarte_api.Controllers
             }
         }
 
+        [HttpGet("ByStatus")]
+        public async Task<ActionResult<List<PontoDescarte>>> GetAllPontosDescarteAsyncStatus()
+        {
+            try
+            {
+                var result = await _repo.GetAllPontosDescarteAsyncStatus(true);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         [HttpGet("{pontodescarteId}")]
         public async Task<IActionResult> GetByPontoDescarteId(int pontodescarteId)
         {
@@ -72,7 +87,7 @@ namespace e_descarte_api.Controllers
             try
             {
                 _repo.Add(model);
-                
+
                 if (await _repo.SaveChangesAsync())
                 {
                     var message = new MimeMessage();

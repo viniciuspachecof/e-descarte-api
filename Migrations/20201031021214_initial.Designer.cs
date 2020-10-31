@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201030014141_initial")]
+    [Migration("20201031021214_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -210,6 +210,9 @@ namespace e_descarte_api.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("nivel")
+                        .HasColumnType("integer");
+
                     b.Property<int>("pontuacao")
                         .HasColumnType("integer");
 
@@ -226,12 +229,14 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
+                            nivel = 0,
                             pontuacao = 0,
                             usuarioId = 1
                         },
                         new
                         {
                             id = 2,
+                            nivel = 0,
                             pontuacao = 0,
                             usuarioId = 2
                         });

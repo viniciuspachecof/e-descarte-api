@@ -111,6 +111,22 @@ namespace e_descarte_api.Data
             return await query.ToArrayAsync();
         }
 
+        public async Task<PontoDescarte[]> GetAllPontosDescarteAsyncStatus(bool includeUsuario)
+        {
+            IQueryable<PontoDescarte> query = _context.pontodescarte;
+
+            if (includeUsuario)
+            {
+                query = query.Include(pd => pd.usuario);
+            }
+
+            query = query.AsNoTracking()
+                         .OrderBy(pontodescarte => pontodescarte.id)
+                         .Where(pontodescarte => pontodescarte.status == false);
+
+            return await query.ToArrayAsync();
+        }
+
         // ITEM
         public async Task<Item[]> GetAllItensAsync()
         {
@@ -285,7 +301,8 @@ namespace e_descarte_api.Data
             }
 
             query = query.AsNoTracking()
-                         .OrderBy(rankingpontuacao => rankingpontuacao.id);
+                         .OrderByDescending(rankingpontuacao => rankingpontuacao.pontuacao)
+                         .Where(rankingpontuacao => rankingpontuacao.usuario.tipo=="DESCARTANTE");
 
             return await query.ToArrayAsync();
         }
