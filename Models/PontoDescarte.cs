@@ -10,7 +10,6 @@ namespace e_descarte_api.Models
             this.id = id;
             this.nome = nome;
             this.fone = fone;
-            // this.imagem = imagem;
             this.latitude = latitude;
             this.longitude = longitude;
             this.ativo = ativo;
@@ -22,7 +21,6 @@ namespace e_descarte_api.Models
         public int id { get; set; }
         public string nome { get; set; }       
         public string fone { get; set; }       
-        // public string imagem { get; set; }   
         public double longitude { get; set; }       
         public double latitude { get; set; }            
         public bool ativo { get; set; }            

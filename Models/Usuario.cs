@@ -13,7 +13,6 @@ namespace e_descarte_api.Models
             this.fone = fone;
             this.senha = senha;
             this.tipo = tipo;
-            // this.imagem = imagem;
         }
 
         public int id { get; set; }
@@ -22,6 +21,5 @@ namespace e_descarte_api.Models
         public string fone { get; set; }    
         public string senha { get; set; }       
         public string tipo { get; set; }       
-        // public string imagem { get; set; }   
     }
 }
