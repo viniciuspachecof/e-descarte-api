@@ -23,7 +23,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetAllPontoDescarteItensAsync(true, true, true, true);
+                var result = await _repo.GetAllPontoDescarteItensAsync(true, true, true);
 
                 return Ok(result);
             }
@@ -38,7 +38,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, true, true, true, true);
+                var result = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, true, true, true);
                 
                 return Ok(result);
             }
@@ -53,7 +53,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteId(pontodescarteId, true, true, true, true);
+                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteId(pontodescarteId, true, true, true);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(pontodescarteId, usuarioId, true, true, true, true);
+                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteUsuarioId(pontodescarteId, usuarioId, true, true, true);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(pontodescarteId, usuarioNome, true, true, true, true);
+                var result = await _repo.GetPontoDescarteItensAsyncByPontoDescarteUsuarioNome(pontodescarteId, usuarioNome, true, true, true);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -130,7 +130,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false, false);
+                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false);
                 if(pontodescarteitem == null) return NotFound();
 
                 _repo.Update(model);
@@ -153,7 +153,7 @@ namespace e_descarte_api.Controllers
         {
             try
             {
-                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false, false);
+                var pontodescarteitem = await _repo.GetPontoDescarteItemAsyncById(pontodescarteitemId, false, false, false);
                 if(pontodescarteitem == null) return NotFound();
 
                 _repo.Delete(pontodescarteitem);
