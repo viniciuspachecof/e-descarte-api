@@ -101,7 +101,7 @@ namespace e_descarte_api.Controllers
 
                     message.Body = new TextPart("plain")
                     {
-                        Text = "Código Ponto descarte: " + model.id + "\nUsuário responsável: " + usuario.nome + "\nEmail do usuário: " + usuario.email + "\nTelefone do usuário: " + usuario.fone + "\nPonto cadastrado: " + model.nome + "\nObs.: Acesse o aplicativo como administrador para a aprovação/reprovação deste ponto de descarte."
+                        Text = "Código Ponto descarte: " + model.id + "\nUsuário responsável: " + usuario.nome + "\nEmail do usuário responsável: " + usuario.email + "\nTelefone do usuário responsável: " + usuario.fone + "\nPonto cadastrado: " + model.nome + "\nObs.: Acesse o aplicativo como administrador para a aprovação/reprovação deste ponto de descarte."
                     };
 
                     using (var client = new SmtpClient())
