@@ -127,19 +127,21 @@ namespace e_descarte_api.Migrations
                 values: new object[,]
                 {
                     { 1, "Telefone", 1 },
-                    { 14, "Geladeira", 36 },
-                    { 13, "Fogão", 16 },
-                    { 12, "Micro-ondas", 8 },
+                    { 17, "Outro", 1 },
+                    { 16, "Geladeira", 36 },
+                    { 15, "Fogão", 16 },
+                    { 14, "Micro-ondas", 8 },
+                    { 13, "Computador", 6 },
                     { 11, "Impressora", 4 },
-                    { 10, "Monitor", 3 },
-                    { 8, "Aparelhos de Som", 1 },
                     { 9, "Televisor", 3 },
+                    { 10, "Monitor", 3 },
+                    { 7, "Teclado", 1 },
                     { 6, "Rádio", 1 },
                     { 5, "Tablet", 1 },
                     { 4, "Pilha", 1 },
                     { 3, "Celular", 1 },
                     { 2, "Câmera Fotográfica", 1 },
-                    { 7, "Teclado", 1 }
+                    { 8, "Aparelhos de Som", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -157,7 +159,7 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "ativo", "fone", "latitude", "longitude", "nome", "status", "tipo", "usuarioId" },
                 values: new object[,]
                 {
-                    { 1, true, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", false, 0, 1 },
+                    { 1, true, "(48) 3445-8811", -28.6868546, -49.384514699999997, "FAMCRI", true, 0, 1 },
                     { 2, true, "(48) 3431-3700", -28.681176099999998, -49.3738259, "Faculdades ESUCRI", true, 1, 2 }
                 });
 
