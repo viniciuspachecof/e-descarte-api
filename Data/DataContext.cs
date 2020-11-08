@@ -22,6 +22,10 @@ namespace e_descarte_api.Data
                     new Usuario(3, "Administrador", "admin@hotmail.com", null, "admin1234", "ADMINISTRADOR")
             });
 
+            builder.Entity<Usuario>()
+                .HasIndex(usuario => usuario.email)
+                .IsUnique();
+
             builder.Entity<RankingPontuacao>()
             .HasData(new List<RankingPontuacao>{
                     new RankingPontuacao(1, 0, 0, 1),

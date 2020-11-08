@@ -288,6 +288,9 @@ namespace e_descarte_api.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("email")
+                        .IsUnique();
+
                     b.ToTable("usuario");
 
                     b.HasData(
