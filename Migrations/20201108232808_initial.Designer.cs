@@ -9,7 +9,7 @@ using e_descarte_api.Data;
 namespace e_descarte_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201108181619_initial")]
+    [Migration("20201108232808_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,21 +106,33 @@ namespace e_descarte_api.Migrations
                         },
                         new
                         {
-                            id = 12,
+                            id = 13,
+                            nome = "Computador",
+                            ponto = 6
+                        },
+                        new
+                        {
+                            id = 14,
                             nome = "Micro-ondas",
                             ponto = 8
                         },
                         new
                         {
-                            id = 13,
+                            id = 15,
                             nome = "Fogão",
                             ponto = 16
                         },
                         new
                         {
-                            id = 14,
+                            id = 16,
                             nome = "Geladeira",
                             ponto = 36
+                        },
+                        new
+                        {
+                            id = 17,
+                            nome = "Outro",
+                            ponto = 1
                         });
                 });
 
@@ -173,7 +185,7 @@ namespace e_descarte_api.Migrations
                             latitude = -28.6868546,
                             longitude = -49.384514699999997,
                             nome = "FAMCRI",
-                            status = false,
+                            status = true,
                             tipo = 0,
                             usuarioId = 1
                         },
