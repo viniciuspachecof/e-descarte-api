@@ -39,62 +39,86 @@ namespace e_descarte_api.Migrations
                         new
                         {
                             id = 1,
-                            nome = "Rádio",
+                            nome = "Telefone",
                             ponto = 1
                         },
                         new
                         {
                             id = 2,
-                            nome = "Televisores",
-                            ponto = 2
+                            nome = "Câmera Fotográfica",
+                            ponto = 1
                         },
                         new
                         {
                             id = 3,
-                            nome = "Tablets",
-                            ponto = 3
+                            nome = "Celular",
+                            ponto = 1
                         },
                         new
                         {
                             id = 4,
-                            nome = "Monitores",
-                            ponto = 4
+                            nome = "Pilha",
+                            ponto = 1
                         },
                         new
                         {
                             id = 5,
-                            nome = "Teclados",
-                            ponto = 5
+                            nome = "Tablet",
+                            ponto = 1
                         },
                         new
                         {
                             id = 6,
-                            nome = "Impressoras",
-                            ponto = 6
+                            nome = "Rádio",
+                            ponto = 1
                         },
                         new
                         {
                             id = 7,
-                            nome = "Câmeras Fotográficas",
-                            ponto = 7
+                            nome = "Teclado",
+                            ponto = 1
                         },
                         new
                         {
                             id = 8,
                             nome = "Aparelhos de Som",
-                            ponto = 8
+                            ponto = 1
                         },
                         new
                         {
                             id = 9,
-                            nome = "Geladeira",
-                            ponto = 9
+                            nome = "Televisor",
+                            ponto = 3
                         },
                         new
                         {
                             id = 10,
+                            nome = "Monitor",
+                            ponto = 3
+                        },
+                        new
+                        {
+                            id = 11,
+                            nome = "Impressora",
+                            ponto = 4
+                        },
+                        new
+                        {
+                            id = 12,
+                            nome = "Micro-ondas",
+                            ponto = 8
+                        },
+                        new
+                        {
+                            id = 13,
                             nome = "Fogão",
-                            ponto = 10
+                            ponto = 16
+                        },
+                        new
+                        {
+                            id = 14,
+                            nome = "Geladeira",
+                            ponto = 36
                         });
                 });
 

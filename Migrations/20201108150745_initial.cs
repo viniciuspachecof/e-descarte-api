@@ -126,16 +126,20 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "nome", "ponto" },
                 values: new object[,]
                 {
-                    { 1, "Rádio", 1 },
-                    { 2, "Televisores", 2 },
-                    { 3, "Tablets", 3 },
-                    { 4, "Monitores", 4 },
-                    { 5, "Teclados", 5 },
-                    { 6, "Impressoras", 6 },
-                    { 7, "Câmeras Fotográficas", 7 },
-                    { 8, "Aparelhos de Som", 8 },
-                    { 9, "Geladeira", 9 },
-                    { 10, "Fogão", 10 }
+                    { 1, "Telefone", 1 },
+                    { 14, "Geladeira", 36 },
+                    { 13, "Fogão", 16 },
+                    { 12, "Micro-ondas", 8 },
+                    { 11, "Impressora", 4 },
+                    { 10, "Monitor", 3 },
+                    { 8, "Aparelhos de Som", 1 },
+                    { 9, "Televisor", 3 },
+                    { 6, "Rádio", 1 },
+                    { 5, "Tablet", 1 },
+                    { 4, "Pilha", 1 },
+                    { 3, "Celular", 1 },
+                    { 2, "Câmera Fotográfica", 1 },
+                    { 7, "Teclado", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -143,8 +147,8 @@ namespace e_descarte_api.Migrations
                 columns: new[] { "id", "email", "fone", "nome", "senha", "tipo" },
                 values: new object[,]
                 {
-                    { 1, "vinicius@hotmail.com", "(48) 99999-9999", "Vinicius", "123456789", "CATADOR" },
                     { 2, "rodolfo@hotmail.com", "(48) 88888-8888", "Rodolfo", "987654321", "DESCARTANTE" },
+                    { 1, "vinicius@hotmail.com", "(48) 99999-9999", "Vinicius", "123456789", "CATADOR" },
                     { 3, "admin@hotmail.com", null, "Administrador", "admin1234", "ADMINISTRADOR" }
                 });
 
