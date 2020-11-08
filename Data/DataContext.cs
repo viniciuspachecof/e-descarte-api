@@ -55,9 +55,11 @@ namespace e_descarte_api.Data
                     new Item(9, "Televisor", 3),
                     new Item(10, "Monitor", 3),
                     new Item(11, "Impressora", 4),
-                    new Item(12, "Micro-ondas", 8),
-                    new Item(13, "Fogão", 16),
-                    new Item(14, "Geladeira", 36),
+                    new Item(13, "Computador", 6),
+                    new Item(14, "Micro-ondas", 8),
+                    new Item(15, "Fogão", 16),
+                    new Item(16, "Geladeira", 36),
+                    new Item(17, "Outro", 1)
             });
         }
     }
