@@ -40,16 +40,20 @@ namespace e_descarte_api.Data
 
             builder.Entity<Item>()
             .HasData(new List<Item>{
-                    new Item(1, "Rádio", 1),
-                    new Item(2, "Televisores", 2),
-                    new Item(3, "Tablets", 3),
-                    new Item(4, "Monitores", 4),
-                    new Item(5, "Teclados", 5),
-                    new Item(6, "Impressoras", 6),
-                    new Item(7, "Câmeras Fotográficas", 7),
-                    new Item(8, "Aparelhos de Som", 8),
-                    new Item(9, "Geladeira", 9),
-                    new Item(10, "Fogão", 10),
+                    new Item(1, "Telefone", 1),
+                    new Item(2, "Câmera Fotográfica", 1),
+                    new Item(3, "Celular", 1),
+                    new Item(4, "Pilha", 1),
+                    new Item(5, "Tablet", 1),
+                    new Item(6, "Rádio", 1),
+                    new Item(7, "Teclado", 1),
+                    new Item(8, "Aparelhos de Som", 1),
+                    new Item(9, "Televisor", 3),
+                    new Item(10, "Monitor", 3),
+                    new Item(11, "Impressora", 4),
+                    new Item(12, "Micro-ondas", 8),
+                    new Item(13, "Fogão", 16),
+                    new Item(14, "Geladeira", 36),
             });
         }
     }
