@@ -200,6 +200,12 @@ namespace e_descarte_api.Migrations
                 name: "IX_rankingpontuacao_usuarioId",
                 table: "rankingpontuacao",
                 column: "usuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_usuario_email",
+                table: "usuario",
+                column: "email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
